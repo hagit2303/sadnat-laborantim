@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>חמשת מקורות ההצלחה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#22395B;--sky:#D3ECF8;--sky2:#3BA6DE;--coral:#F26B4F;--sun:#F7C33C;--plum:#7B5BBE;--paper:#FFFDF8;
+ --mash:#F07468;--mek:#F8D477;--men:#5FAED6;--tom:#8AC6A0;--wa:#0B6B5E;--mine:#D7F5C4;--chat:#EFE7DC}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{overflow:hidden;font-family:Rubik,Arial,sans-serif;color:var(--navy);background:var(--sky)}
+.s{position:absolute;inset:0;display:none;overflow:hidden}
+.s.on{display:block}
+/* רקע קומיקס: קרניים */
+.pop{background:var(--sky)}
+.pop::before{content:"";position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.55) 0deg 7deg,transparent 7deg 22deg);pointer-events:none}
+.pop::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(34,57,91,.12) 1.2px,transparent 1.4px);background-size:14px 14px;pointer-events:none}
+.in{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2.2vh,24px);padding:clamp(20px,4vh,52px) clamp(16px,5vw,80px) 78px;overflow-y:auto}
+h1{font-weight:900;font-size:clamp(44px,6.4vw,92px);line-height:1}
+h2{font-weight:900;font-size:clamp(32px,4.2vw,58px);line-height:1.05}
+.kick{font-weight:700;font-size:clamp(15px,1.5vw,19px);color:var(--coral)}
+.lead{font-size:clamp(18px,2vw,26px);line-height:1.45;font-weight:500}
+.hl{color:var(--coral)}
+.burst{display:inline-block;background:var(--sun);padding:6px 22px;font-weight:900;transform:rotate(-2deg);clip-path:polygon(0 12%,4% 0,50% 8%,96% 0,100% 14%,98% 86%,100% 100%,50% 92%,3% 100%,0 86%)}
+.btn{align-self:flex-start;font:inherit;font-weight:900;font-size:clamp(17px,1.7vw,21px);cursor:pointer;padding:12px 26px;border-radius:999px;border:3px solid var(--navy);background:var(--sun);color:var(--navy);box-shadow:4px 4px 0 var(--navy);text-decoration:none}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--navy)}
+/* שקפי קנבה */
+.cv{background:#0F1C2E}
+.cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+/* כרטיס קומיקס */
+.box{background:var(--paper);border:3px solid var(--navy);border-radius:18px;box-shadow:6px 6px 0 var(--navy);padding:clamp(14px,1.8vw,24px)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3.5vw,48px);align-items:center}
+/* מה זו תקשורת */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flow span{font-weight:900;font-size:clamp(18px,2vw,26px);padding:10px 18px;border:3px solid var(--navy);border-radius:14px;background:#fff}
+.flow i{font-style:normal;font-size:28px;font-weight:900}
+.flow .back{background:var(--sun)}
+.noise{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.noise h3{font-weight:900;font-size:clamp(18px,1.8vw,24px);margin-bottom:6px}
+.noise li{font-size:clamp(15px,1.5vw,19px);line-height:1.5;list-style:none}
+.noise li::before{content:"📢 "}
+.noise .inner li::before{content:"💭 "}
+/* מדינה זרה */
+.reel{position:relative;height:min(72vh,640px);aspect-ratio:9/16;border:3px solid var(--navy);border-radius:22px;overflow:hidden;background:#fff;box-shadow:6px 6px 0 var(--navy);justify-self:center}
+.reel::before{content:"הרילס נטען מאינסטגרם… אם הוא לא מופיע, לוחצים על הכפתור ▶";position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;font-size:16px;line-height:1.5}
+.reel iframe{position:relative;width:100%;height:100%;border:0}
+.abroad{grid-template-columns:minmax(0,1fr) auto}
+.say{font-weight:900;font-size:clamp(20px,2.3vw,30px);line-height:1.3;background:#fff;border:3px solid var(--navy);border-radius:24px 24px 24px 6px;padding:14px 20px;box-shadow:4px 4px 0 var(--navy)}
+/* שאלון */
+.qr{background:#fff;border:3px solid var(--navy);border-radius:18px;padding:16px;box-shadow:6px 6px 0 var(--navy);justify-self:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.qr #qr{width:min(34vh,300px);height:min(34vh,300px)}
+.qr #qr2{width:min(30vh,240px);height:min(30vh,240px)}
+.qr #qr2 img,.qr #qr2 canvas{width:100%!important;height:100%!important}
+.roles[style] .box{flex-direction:row;align-items:center;gap:12px;padding:10px 16px}
+.qr #qr svg,.qr #qr2 svg,.qr #qr3 svg{display:block;width:100%;height:100%}
+.qr #qr3{width:min(34vh,300px);height:min(34vh,300px)}
+.qr small{font-size:14px;direction:ltr}
+.steps{list-style:none;counter-reset:n;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:n;display:flex;gap:12px;align-items:baseline;font-size:clamp(17px,1.8vw,23px);font-weight:500}
+.steps li::before{content:counter(n);flex:none;width:1.7em;height:1.7em;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.85em}
+/* מפה */
+.map{position:relative;width:min(58vh,520px);max-width:calc(100% - 28px);aspect-ratio:1;justify-self:center;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px}
+.q{border:3px solid var(--navy);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:8px}
+.q b{font-weight:900;font-size:clamp(20px,2.4vw,32px)}
+.q span{font-size:clamp(14px,1.4vw,18px);font-weight:700}
+.q em{font-style:normal;font-size:clamp(22px,2.6vw,34px)}
+.ax{position:absolute;font-weight:900;font-size:14px;background:var(--navy);color:#fff;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.ax.t{top:-14px;left:50%;transform:translateX(-50%)}.ax.b{bottom:-14px;left:50%;transform:translateX(-50%)}
+.ax.l{left:-12px;top:50%;transform:translate(-50%,-50%) rotate(-90deg)}.ax.r{right:-12px;top:50%;transform:translate(50%,-50%) rotate(90deg)}
+/* שקפי סגנון: טלפון + חשיפה */
+.st{grid-template-columns:auto minmax(0,1fr)}
+.phone{width:min(330px,30vw);height:min(72vh,620px);border-radius:36px;background:#111;padding:11px;box-shadow:8px 8px 0 var(--navy);display:flex}
+.scr{flex:1;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;background:var(--chat)}
+.top{background:var(--wa);color:#fff;display:flex;align-items:center;gap:10px;padding:11px 13px}
+.av{width:40px;height:40px;border-radius:50%;background-size:520%;flex:none;border:2px solid #fff}
+.top b{font-size:15px;display:block}.top small{font-size:12px;opacity:.85}
+.body{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;background-image:radial-gradient(rgba(0,0,0,.05) 1px,transparent 1px);background-size:14px 14px}
+.m{max-width:88%;background:#fff;border-radius:10px;padding:8px 10px 18px;font-size:clamp(14px,1.25vw,16px);line-height:1.4;position:relative;align-self:flex-start;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.m.me{background:var(--mine);align-self:flex-end}
+.m .t{position:absolute;bottom:3px;inset-inline-end:8px;font-size:11px;color:#6b7b80;direction:ltr}
+.m.sys{align-self:center;background:#FFF3C4;font-size:12px;padding:5px 10px}
+.panel{display:flex;flex-direction:column;gap:clamp(8px,1.3vh,14px);min-width:0}
+.s:not(.revealed) .rv{display:none}
+.s.revealed .pre{display:none!important}
+.s.revealed .in{padding-top:14px;padding-bottom:66px}
+.mystery{font-weight:900;font-size:clamp(90px,14vw,180px);line-height:.9;color:var(--coral);text-shadow:5px 5px 0 var(--navy)}
+.sty{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sty b{font-weight:900;font-size:clamp(32px,4vw,54px);background:var(--c);border:3px solid var(--navy);border-radius:14px;padding:2px 18px;box-shadow:4px 4px 0 var(--navy)}
+.sty i{font-style:normal;font-weight:900;font-size:clamp(20px,2.2vw,30px)}
+.feel{font-size:clamp(16px,1.6vw,20px);font-weight:500}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dd .box{padding:10px 14px}
+.dd h3{font-weight:900;font-size:clamp(17px,1.7vw,22px);margin-bottom:6px}
+.dd li{list-style:none;font-size:clamp(14px,1.3vw,17px);line-height:1.38}
+.do h3{color:#1E7B4D}.do li::before{content:"✔ ";color:#1E7B4D;font-weight:900}
+.dont h3{color:#C2362B}.dont li::before{content:"✖ ";color:#C2362B;font-weight:900}
+.spot{font-size:clamp(15px,1.5vw,19px)}
+.spot b{font-weight:900}
+/* סיכום */
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px)}
+.four .box{background:var(--c);display:flex;flex-direction:column;gap:6px;text-align:center;align-items:center}
+.four em{font-style:normal;font-size:clamp(30px,3.4vw,46px)}
+.four b{font-weight:900;font-size:clamp(22px,2.4vw,32px)}
+.four i{font-style:normal;font-weight:900;font-size:clamp(17px,1.7vw,22px)}
+.four p{font-size:clamp(14px,1.4vw,18px);font-weight:500;line-height:1.4}
+/* ע.ז.ת */
+.ezt{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ezt .box{display:flex;flex-direction:column;gap:6px}
+.ezt b{font-weight:900;font-size:clamp(26px,3vw,40px)}
+.ezt p{font-size:clamp(15px,1.5vw,19px);line-height:1.45}
+/* פעילות */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.roles .box{display:flex;flex-direction:column;gap:6px}
+.roles em{font-style:normal;font-size:clamp(30px,3.4vw,44px)}
+.roles b{font-weight:900;font-size:clamp(20px,2.1vw,28px)}
+.roles p{font-size:clamp(14px,1.45vw,18px);line-height:1.45}
+.time{display:flex;gap:8px;flex-wrap:wrap}
+.time span{font-weight:700;font-size:clamp(15px,1.5vw,19px);background:#fff;border:2px solid var(--navy);border-radius:999px;padding:6px 14px}
+.time span b{font-weight:900;color:var(--coral)}
+.letter{display:flex;flex-direction:column;gap:14px;font-size:clamp(20px,2.3vw,30px);font-weight:500;line-height:1.5}
+.blank{display:inline-block;min-width:7em;border-bottom:3px solid var(--navy)}
+.credit{position:absolute;bottom:12px;inset-inline-end:clamp(16px,4vw,48px);z-index:2;font-size:12px;opacity:.75}
+.nav{position:fixed;bottom:14px;inset-inline-start:16px;display:flex;gap:8px;align-items:center;z-index:5}
+.nav button{width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;font-weight:900;background:var(--sun);border:3px solid var(--navy);color:var(--navy)}
+.nav span{min-width:60px;text-align:center;direction:ltr;unicode-bidi:isolate;font-weight:900;background:#fff;border-radius:999px;padding:4px 8px;border:2px solid var(--navy)}
+.barw{position:fixed;top:0;inset-inline:0;height:6px;background:rgba(34,57,91,.15);z-index:5}
+.bar{height:100%;background:var(--coral);transition:width .3s}
+.rules3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rules3 .box{display:flex;flex-direction:column;gap:6px}
+.rules3 em{font-style:normal;font-size:clamp(34px,4vw,54px)}
+.rules3 b{font-weight:900;font-size:clamp(19px,2vw,26px);line-height:1.2}
+.rules3 p{font-size:clamp(14px,1.45vw,18px);line-height:1.45}
+.ab2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ab2 .box{display:flex;flex-direction:column;gap:8px}
+.ab2 b{font-weight:900;font-size:clamp(22px,2.4vw,32px)}
+.ab2 p{font-size:clamp(15px,1.6vw,21px);line-height:1.45}
+.vid{display:flex;flex-direction:column;gap:clamp(12px,2vh,20px);max-width:1100px}
+.vid .big{font-weight:900;font-size:clamp(34px,5vw,74px);line-height:1.08}
+.q4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.q4 .box{background:var(--c);display:flex;flex-direction:column;gap:6px;padding:12px 14px}
+.q4 b{font-weight:900;font-size:clamp(18px,1.8vw,24px)}
+.q4 p{font-size:clamp(14px,1.35vw,17px);line-height:1.4;font-weight:500}
+/* מי אתם */
+.who{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(16px,3vw,40px);align-items:stretch}
+.hero{background:var(--c);border:3px solid var(--navy);border-radius:22px;box-shadow:8px 8px 0 var(--navy);padding:clamp(16px,2.4vw,32px);display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.hero .ax2{align-self:flex-start;font-weight:900;font-size:14px;background:var(--navy);color:#fff;border-radius:999px;padding:3px 12px}
+.hero h2{font-size:clamp(34px,4.4vw,62px)}
+.hero .emo{font-size:clamp(46px,6vw,84px);line-height:1}
+.hero p{font-size:clamp(15px,1.55vw,20px);line-height:1.45;font-weight:500}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.facts .box{padding:12px 16px;display:flex;flex-direction:column;gap:4px}
+.facts h3{font-weight:900;font-size:clamp(15px,1.5vw,19px);color:var(--coral)}
+.facts p{font-size:clamp(14px,1.35vw,17px);line-height:1.42}
+/* עשו / אל תעשו */
+.dd2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dd2 .box{padding:16px 20px}
+.dd2 h3{font-weight:900;font-size:clamp(24px,2.6vw,34px);margin-bottom:8px}
+.dd2 li{list-style:none;font-size:clamp(17px,1.9vw,25px);line-height:1.5;font-weight:500}
+.tip{font-size:clamp(16px,1.7vw,22px);font-weight:500}
+.tip b{font-weight:900}
+/* מילת שאלה */
+.qw{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
+.qword{font-weight:900;font-size:clamp(90px,15vw,210px);line-height:.9;background:var(--c);border:4px solid var(--navy);border-radius:28px;box-shadow:8px 8px 0 var(--navy);padding:10px 28px}
+.bub{background:#fff;border:3px solid var(--navy);border-radius:24px 24px 24px 6px;padding:14px 20px;font-size:clamp(18px,2.1vw,28px);font-weight:500;line-height:1.4;box-shadow:4px 4px 0 var(--navy)}
+.aside{font-size:clamp(15px,1.6vw,20px);font-style:italic}
+.lab{background:var(--mine);border:3px solid var(--navy);border-radius:16px;padding:12px 16px;font-size:clamp(16px,1.8vw,23px);font-weight:700}
+/* בחירות */
+.vote{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vote .box{display:flex;flex-direction:column;gap:8px;text-align:center;align-items:center}
+.vote .face{font-size:clamp(38px,4.4vw,60px)}
+.vote b{font-weight:900;font-size:clamp(17px,1.7vw,22px)}
+.vote p{font-size:clamp(14px,1.45vw,18px);line-height:1.4;font-weight:500}
+.vote .ans{background:var(--c);border:2px solid var(--navy);border-radius:999px;padding:2px 12px;font-weight:900}
+.teaser{display:flex;flex-direction:column;gap:10px}
+.teaser li{list-style:none;font-size:clamp(18px,2vw,26px);font-weight:500;background:#fff;border:3px solid var(--navy);border-radius:16px;padding:10px 16px;box-shadow:4px 4px 0 var(--navy)}
+.case{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.case span{font-weight:900;font-size:clamp(16px,1.7vw,22px);background:#fff;border:3px solid var(--navy);border-radius:14px;padding:8px 14px}
+.case i{font-style:normal;font-weight:900;font-size:24px}
+.step{visibility:hidden;opacity:0;transform:translateY(14px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+.step.shown{visibility:visible;opacity:1;transform:none;transition:opacity .35s,transform .35s}
+.qs2{list-style:none;display:flex;flex-direction:column;gap:12px}
+.qs2 li{font-size:clamp(19px,2.2vw,28px);font-weight:700;background:#fff;border:3px solid var(--navy);border-radius:16px;padding:10px 18px;box-shadow:4px 4px 0 var(--navy)}
+.src5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.src5 .box{background:var(--c);display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center;padding:14px 10px}
+.src5 em{font-style:normal;font-size:clamp(30px,3.4vw,46px)}
+.src5 b{font-weight:900;font-size:clamp(17px,1.8vw,23px)}
+.src5 i{font-style:normal;font-size:clamp(13px,1.3vw,16px);font-weight:500}
+.num{display:inline-grid;place-items:center;width:1.6em;height:1.6em;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;margin-inline-end:10px}
+.srch{display:flex;align-items:center;gap:14px}
+.srch .em{font-size:clamp(46px,6vw,80px);line-height:1}
+.ex{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ex .box{display:flex;flex-direction:column;gap:6px}
+.ex b{font-weight:900;font-size:clamp(18px,1.9vw,24px)}
+.ex p{font-size:clamp(15px,1.6vw,20px);line-height:1.5}
+.chainx{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.chainx span{font-weight:900;font-size:clamp(17px,1.9vw,24px);background:#fff;border:3px solid var(--navy);border-radius:14px;padding:8px 14px}
+.chainx i{font-style:normal;font-weight:900;font-size:24px}
+.strike{text-decoration:line-through;text-decoration-color:var(--coral);text-decoration-thickness:5px}
+.note5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.note5 div{background:#fff;border:3px solid var(--navy);border-radius:14px;padding:10px;min-height:130px;display:flex;flex-direction:column;gap:6px}
+.note5 b{font-weight:900;font-size:clamp(15px,1.5vw,19px)}
+.note5 span{border-bottom:2px dotted #9BB0B3;height:22px}
+@media (max-width:760px){.src5,.note5{grid-template-columns:1fr 1fr}.ex{grid-template-columns:1fr}}
+@media (max-width:760px){
+ body{overflow:auto}
+ .in{justify-content:flex-start}
+ .row,.abroad,.st{grid-template-columns:1fr}
+ .noise,.dd,.ezt,.roles,.rules3,.ab2,.facts,.dd2,.who,.qw{grid-template-columns:1fr}
+ .q4,.vote{grid-template-columns:1fr 1fr}
+ .four{grid-template-columns:1fr 1fr}
+ .phone{width:100%;height:440px}
+ .reel{height:60vh}
+ .map{width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<main>
+<section class="s pop"><div class="in"><div class="kick">🎁 מתנה קטנה לדרך</div><h1>חמשת מקורות<br><span class="hl">ההצלחה</span></h1>
+<p class="lead">כלי אחד קטן, שמשנה את הדרך שבה אנחנו סופרים הצלחות.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">מה הכלי מעלה?</div><h2>אחד עולה, והשאר עולים איתו</h2>
+<div class="chainx"><span>💪 ביטחון עצמי</span><i>←</i><span>🦁 העזה</span><i>←</i><span>🔥 מוטיבציה</span></div>
+<p class="say">כשהביטחון עולה, גם ההעזה עולה. וכשאחד עולה, כל השאר עולים איתו, ואנחנו מממשים יותר מהפוטנציאל שלנו.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">הרקע</div><h2>"אסור לטעות!"</h2>
+<p class="lead">מגיל קטן אנחנו שומעים "תיזהר": מהשקע, מלתת את הלב, מלצאת פראייר. ואחר כך "תיזהר" מתוחכם יותר: אל תצפה ליותר מדי, אל תקפוץ מעל הפופיק.</p>
+<div class="ex"><div class="box"><b>המסקנה הראשונה</b><p>העולם מסוכן.</p></div><div class="box"><b>המסקנה השנייה</b><p>אולי אי אפשר לסמוך על שיקול הדעת שלי? וכך מגיעים לבינוניות.</p></div></div>
+<p class="burst">ומי שטועה? מסתיר, משקר, מאשים.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">מילה אחת משנה</div><h2>במקום <span class="strike">"תיזהר"</span>,<br>"<span class="hl">שים לב</span>"</h2>
+<p class="say">"תיזהר" אומר: העולם מסוכן. "שים לב" אומר: אני סומך עליך.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">✍️ רגע של כתיבה</div><h2>מהי הצלחה בשבילכם?</h2>
+<p class="lead">קחו עט, וכתבו: למה אתם קוראים הצלחה?</p></div></section>
+<section class="s pop"><div class="in"><div class="srch"><span class="em">🎯</span><div><div class="kick">מקור 1</div><h2>תוצאה מבוקשת</h2></div></div>
+<p class="lead">רציתי משהו, וקיבלתי אותו. זה המקור שכולנו מכירים.</p>
+<div class="ex"><div class="box" style="background:var(--mash)"><b>אבל כמה אנחנו שולטים בתוצאה?</b><p>חל"ת, פיטורים, עסקה שמתבטלת. במעבדה: ניסוי שלא הצליח, תקציב שנסגר.</p></div>
+<div class="box"><b>ושם רובנו שמים את כל האנרגיה</b><p>וככל שמגיעות יותר תוצאות בלתי מבוקשות, האנרגיה יורדת.</p></div></div>
+<p class="burst">האנרגיה ממוקדת במקום היחיד שבו אין לי שליטה. לכן יש עוד ארבעה מקורות.</p></div></section>
+<section class="s pop"><div class="in"><div class="srch"><span class="em">🏃</span><div><div class="kick">מקור 2</div><h2>פעולה שננקטה</h2></div></div>
+<p class="lead">פעולה שאין לה קשר לתוצאה.</p>
+<div class="ex"><div class="box" style="background:var(--mek)"><b>א. פעולה מתוכננת</b><p>עמדתי בהסכם עם עצמי. תכננתי לסדר את המחסן, וסידרתי.</p></div>
+<div class="box" style="background:var(--mek)"><b>ב. פעולה אחרי היסוס</b><p>למרות החשש, פעלתי. ביקשתי מהמורה שישלח בקשה יום מראש. ביקשתי העלאה.</p></div></div>
+<p class="say">אין לי שליטה בתוצאה, רק במה שאני עושה. ואין הצלחה קטנה או גדולה.</p></div></section>
+<section class="s pop"><div class="in"><div class="srch"><span class="em">💡</span><div><div class="kick">מקור 3</div><h2>הבנה חדשה</h2></div></div>
+<p class="lead">הרחבה של ידע קודם: מצאתי דרך יעילה יותר להגיע למטרה.</p>
+<div class="ex"><div class="box" style="background:var(--men)"><b>למה זו הצלחה?</b><p>כי רובנו נסגרים: "אי אפשר ללמד כלב זקן תרגיל חדש". "אהה, אני מכיר…" והקשבה יורדת לאפס.</p></div>
+<div class="box"><b>למשל</b><p>⊞ חלונות + M מקטין את כל החלונות. Ctrl+C, Ctrl+V. דרך חדשה בוויז. במעבדה: דרך מהירה יותר להכין 80 מגשים.</p></div></div>
+<p class="burst">פתיחות והקשבה הן הצלחה.</p></div></section>
+<section class="s pop"><div class="in"><div class="srch"><span class="em">🌈</span><div><div class="kick">מקור 4</div><h2>תובנה חדשה</h2></div></div>
+<p class="lead">ידע חדש לגמרי. הזדמנות ללמוד תחום שלא הכרתי.</p>
+<div class="chainx"><span style="background:var(--men)">כחול</span><i>+</i><span style="background:var(--mek)">צהוב</span><i>=</i><span style="background:var(--tom)">ירוק!</span></div>
+<p class="lead">ילד קטן יודע שיש צבעים. כשהוא מערבב שניים ומקבל צבע חדש, זה WOW.</p>
+<p class="say">לא מובן מאליו להיות פתוחים לדבר חדש, גם אם בסוף נבחר לא להשתמש בו. (למשל: סגנונות תקשורת 😉)</p></div></section>
+<section class="s pop"><div class="in"><div class="srch"><span class="em">🔍</span><div><div class="kick">מקור 5</div><h2>טעות מזוהה</h2></div></div>
+<p class="lead">טועים הרבה? לא. מקבלים הרבה <b>תוצאות בלתי מבוקשות</b>.</p>
+<div class="chainx"><span style="background:#B9A6E8">תוצאה בלתי מבוקשת</span><i>←</i><span>חוקרים: מה עשיתי? מה לא עשיתי?</span><i>←</i><span>מתקנים את התכנית</span></div>
+<p class="say">לא הטעות היא ההצלחה, אלא הזיהוי. זו הדרך היחידה לתקן.</p>
+<p class="burst">במקום "כישלון": "תוצאה בלתי מבוקשת".</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">הכול בשקף אחד</div><h2>חמשת מקורות ההצלחה</h2>
+<div class="src5">
+ <div class="box" style="--c:var(--mash)"><em>🎯</em><b>תוצאה מבוקשת</b><i>רציתי, קיבלתי</i></div>
+ <div class="box" style="--c:var(--mek)"><em>🏃</em><b>פעולה שננקטה</b><i>מתוכננת, או אחרי היסוס</i></div>
+ <div class="box" style="--c:var(--men)"><em>💡</em><b>הבנה חדשה</b><i>דרך יעילה יותר</i></div>
+ <div class="box" style="--c:var(--tom)"><em>🌈</em><b>תובנה חדשה</b><i>ידע חדש לגמרי</i></div>
+ <div class="box" style="--c:#B9A6E8"><em>🔍</em><b>טעות מזוהה</b><i>זיהיתי, ואתקן</i></div>
+</div>
+<p class="say">שאלה אחת שבונה: מה אני יכול/ה לעשות אחרת?</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">✍️ שיעורי בית (נעימים)</div><h2>מהיום: 5–10 הצלחות ביום</h2>
+<div class="note5">
+ <div><b>🎯 תוצאה</b><span></span><span></span></div>
+ <div><b>🏃 פעולה</b><span></span><span></span></div>
+ <div><b>💡 הבנה</b><span></span><span></span></div>
+ <div><b>🌈 תובנה</b><span></span><span></span></div>
+ <div><b>🔍 טעות שזיהיתי</b><span></span><span></span></div>
+</div>
+<p class="lead">לפי ההגדרה שלכם להצלחה. בפתק, בטלפון, או בהודעה לעצמכם.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">ובעצם…</div><h2>היום כבר צברתם לפחות שלוש</h2>
+<div class="ex">
+ <div class="box"><b>🏃 פעולה אחרי היסוס</b><p>מי שעלה לבמה, או הקריא בקול עם כל הפיצוץ.</p></div>
+ <div class="box"><b>🌈 תובנה חדשה</b><p>ארבע שפות שלא ידעתם שאתם מדברים.</p></div>
+ <div class="box"><b>💡 הבנה חדשה</b><p>איך עונים בשפה של המורה, בלי לשנות את המורה.</p></div>
+ <div class="box"><b>🔍 טעות מזוהה</b><p>המשפט שהצית. מעכשיו אתם יודעים לזהות אותו.</p></div>
+</div>
+<p class="burst">תודה, ובהצלחה! (מכל חמשת המקורות) 💛</p></div></section>
+</main>
+<div class="credit">חגית ברגמן · חמשת מקורות ההצלחה</div>
+<nav class="nav"><button class="pv" aria-label="הקודם">→</button><span></span><button class="nx" aria-label="הבא">←</button></nav>
+<div class="barw"><div class="bar"></div></div>
+<script src="deck.js?v=3"></script>
+</body></html>

@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ארבעה מורים ולבורנטית אחת</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#22395B;--sky:#D3ECF8;--sky2:#3BA6DE;--coral:#F26B4F;--sun:#F7C33C;--plum:#7B5BBE;--paper:#FFFDF8;
+ --mash:#F07468;--mek:#F8D477;--men:#5FAED6;--tom:#8AC6A0;--wa:#0B6B5E;--mine:#D7F5C4;--chat:#EFE7DC}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{overflow:hidden;font-family:Rubik,Arial,sans-serif;color:var(--navy);background:var(--sky)}
+.s{position:absolute;inset:0;display:none;overflow:hidden}
+.s.on{display:block}
+/* רקע קומיקס: קרניים */
+.pop{background:var(--sky)}
+.pop::before{content:"";position:absolute;inset:-40%;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,255,255,.55) 0deg 7deg,transparent 7deg 22deg);pointer-events:none}
+.pop::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(34,57,91,.12) 1.2px,transparent 1.4px);background-size:14px 14px;pointer-events:none}
+.in{position:relative;z-index:1;height:100%;display:flex;flex-direction:column;justify-content:center;gap:clamp(12px,2.2vh,24px);padding:clamp(20px,4vh,52px) clamp(16px,5vw,80px) 78px;overflow-y:auto}
+h1{font-weight:900;font-size:clamp(44px,6.4vw,92px);line-height:1}
+h2{font-weight:900;font-size:clamp(32px,4.2vw,58px);line-height:1.05}
+.kick{font-weight:700;font-size:clamp(15px,1.5vw,19px);color:var(--coral)}
+.lead{font-size:clamp(18px,2vw,26px);line-height:1.45;font-weight:500}
+.hl{color:var(--coral)}
+.burst{display:inline-block;background:var(--sun);padding:6px 22px;font-weight:900;transform:rotate(-2deg);clip-path:polygon(0 12%,4% 0,50% 8%,96% 0,100% 14%,98% 86%,100% 100%,50% 92%,3% 100%,0 86%)}
+.btn{align-self:flex-start;font:inherit;font-weight:900;font-size:clamp(17px,1.7vw,21px);cursor:pointer;padding:12px 26px;border-radius:999px;border:3px solid var(--navy);background:var(--sun);color:var(--navy);box-shadow:4px 4px 0 var(--navy);text-decoration:none}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--navy)}
+/* שקפי קנבה */
+.cv{background:#0F1C2E}
+.cv img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+/* כרטיס קומיקס */
+.box{background:var(--paper);border:3px solid var(--navy);border-radius:18px;box-shadow:6px 6px 0 var(--navy);padding:clamp(14px,1.8vw,24px)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3.5vw,48px);align-items:center}
+/* מה זו תקשורת */
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flow span{font-weight:900;font-size:clamp(18px,2vw,26px);padding:10px 18px;border:3px solid var(--navy);border-radius:14px;background:#fff}
+.flow i{font-style:normal;font-size:28px;font-weight:900}
+.flow .back{background:var(--sun)}
+.noise{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.noise h3{font-weight:900;font-size:clamp(18px,1.8vw,24px);margin-bottom:6px}
+.noise li{font-size:clamp(15px,1.5vw,19px);line-height:1.5;list-style:none}
+.noise li::before{content:"📢 "}
+.noise .inner li::before{content:"💭 "}
+/* מדינה זרה */
+.reel{position:relative;height:min(72vh,640px);aspect-ratio:9/16;border:3px solid var(--navy);border-radius:22px;overflow:hidden;background:#fff;box-shadow:6px 6px 0 var(--navy);justify-self:center}
+.reel::before{content:"הרילס נטען מאינסטגרם… אם הוא לא מופיע, לוחצים על הכפתור ▶";position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:24px;font-size:16px;line-height:1.5}
+.reel iframe{position:relative;width:100%;height:100%;border:0}
+.abroad{grid-template-columns:minmax(0,1fr) auto}
+.say{font-weight:900;font-size:clamp(20px,2.3vw,30px);line-height:1.3;background:#fff;border:3px solid var(--navy);border-radius:24px 24px 24px 6px;padding:14px 20px;box-shadow:4px 4px 0 var(--navy)}
+/* שאלון */
+.qr{background:#fff;border:3px solid var(--navy);border-radius:18px;padding:16px;box-shadow:6px 6px 0 var(--navy);justify-self:center;display:flex;flex-direction:column;align-items:center;gap:10px}
+.qr #qr{width:min(34vh,300px);height:min(34vh,300px)}
+.qr #qr2{width:min(30vh,240px);height:min(30vh,240px)}
+.qr #qr2 img,.qr #qr2 canvas{width:100%!important;height:100%!important}
+.roles[style] .box{flex-direction:row;align-items:center;gap:12px;padding:10px 16px}
+.qr #qr svg,.qr #qr2 svg,.qr #qr3 svg{display:block;width:100%;height:100%}
+.qr #qr3,.qr #qr4{width:min(30vh,240px);height:min(30vh,240px)}
+.qr #qr4 svg{display:block;width:100%;height:100%}
+.qr small{font-size:14px;direction:ltr}
+.steps{list-style:none;counter-reset:n;display:flex;flex-direction:column;gap:10px}
+.steps li{counter-increment:n;display:flex;gap:12px;align-items:baseline;font-size:clamp(17px,1.8vw,23px);font-weight:500}
+.steps li::before{content:counter(n);flex:none;width:1.7em;height:1.7em;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;font-weight:900;font-size:.85em}
+/* מפה */
+.map{position:relative;width:min(58vh,520px);max-width:calc(100% - 28px);aspect-ratio:1;justify-self:center;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px}
+.q{border:3px solid var(--navy);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:4px;padding:8px}
+.q b{font-weight:900;font-size:clamp(20px,2.4vw,32px)}
+.q span{font-size:clamp(14px,1.4vw,18px);font-weight:700}
+.q em{font-style:normal;font-size:clamp(22px,2.6vw,34px)}
+.ax{position:absolute;font-weight:900;font-size:14px;background:var(--navy);color:#fff;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.ax.t{top:-14px;left:50%;transform:translateX(-50%)}.ax.b{bottom:-14px;left:50%;transform:translateX(-50%)}
+.ax.l{left:-12px;top:50%;transform:translate(-50%,-50%) rotate(-90deg)}.ax.r{right:-12px;top:50%;transform:translate(50%,-50%) rotate(90deg)}
+/* שקפי סגנון: טלפון + חשיפה */
+.st{grid-template-columns:auto minmax(0,1fr)}
+.phone{width:min(330px,30vw);height:min(72vh,620px);border-radius:36px;background:#111;padding:11px;box-shadow:8px 8px 0 var(--navy);display:flex}
+.scr{flex:1;border-radius:26px;overflow:hidden;display:flex;flex-direction:column;background:var(--chat)}
+.top{background:var(--wa);color:#fff;display:flex;align-items:center;gap:10px;padding:11px 13px}
+.av{width:40px;height:40px;border-radius:50%;background-size:520%;flex:none;border:2px solid #fff}
+.top b{font-size:15px;display:block}.top small{font-size:12px;opacity:.85}
+.body{flex:1;padding:12px;display:flex;flex-direction:column;gap:8px;overflow-y:auto;background-image:radial-gradient(rgba(0,0,0,.05) 1px,transparent 1px);background-size:14px 14px}
+.m{max-width:88%;background:#fff;border-radius:10px;padding:8px 10px 18px;font-size:clamp(14px,1.25vw,16px);line-height:1.4;position:relative;align-self:flex-start;box-shadow:0 1px 0 rgba(0,0,0,.08)}
+.m.me{background:var(--mine);align-self:flex-end}
+.m .t{position:absolute;bottom:3px;inset-inline-end:8px;font-size:11px;color:#6b7b80;direction:ltr}
+.m.sys{align-self:center;background:#FFF3C4;font-size:12px;padding:5px 10px}
+.panel{display:flex;flex-direction:column;gap:clamp(8px,1.3vh,14px);min-width:0}
+.s:not(.revealed) .rv{display:none}
+.s.revealed .pre{display:none!important}
+.s.revealed .in{padding-top:14px;padding-bottom:66px}
+.mystery{font-weight:900;font-size:clamp(90px,14vw,180px);line-height:.9;color:var(--coral);text-shadow:5px 5px 0 var(--navy)}
+.sty{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.sty b{font-weight:900;font-size:clamp(32px,4vw,54px);background:var(--c);border:3px solid var(--navy);border-radius:14px;padding:2px 18px;box-shadow:4px 4px 0 var(--navy)}
+.sty i{font-style:normal;font-weight:900;font-size:clamp(20px,2.2vw,30px)}
+.feel{font-size:clamp(16px,1.6vw,20px);font-weight:500}
+.dd{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.dd .box{padding:10px 14px}
+.dd h3{font-weight:900;font-size:clamp(17px,1.7vw,22px);margin-bottom:6px}
+.dd li{list-style:none;font-size:clamp(14px,1.3vw,17px);line-height:1.38}
+.do h3{color:#1E7B4D}.do li::before{content:"✔ ";color:#1E7B4D;font-weight:900}
+.dont h3{color:#C2362B}.dont li::before{content:"✖ ";color:#C2362B;font-weight:900}
+.spot{font-size:clamp(15px,1.5vw,19px)}
+.spot b{font-weight:900}
+/* סיכום */
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(10px,1.4vw,18px)}
+.four .box{background:var(--c);display:flex;flex-direction:column;gap:6px;text-align:center;align-items:center}
+.four em{font-style:normal;font-size:clamp(30px,3.4vw,46px)}
+.four b{font-weight:900;font-size:clamp(22px,2.4vw,32px)}
+.four i{font-style:normal;font-weight:900;font-size:clamp(17px,1.7vw,22px)}
+.four p{font-size:clamp(14px,1.4vw,18px);font-weight:500;line-height:1.4}
+/* ע.ז.ת */
+.ezt{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.ezt .box{display:flex;flex-direction:column;gap:6px}
+.ezt b{font-weight:900;font-size:clamp(26px,3vw,40px)}
+.ezt p{font-size:clamp(15px,1.5vw,19px);line-height:1.45}
+/* פעילות */
+.roles{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.roles .box{display:flex;flex-direction:column;gap:6px}
+.roles em{font-style:normal;font-size:clamp(30px,3.4vw,44px)}
+.roles b{font-weight:900;font-size:clamp(20px,2.1vw,28px)}
+.roles p{font-size:clamp(14px,1.45vw,18px);line-height:1.45}
+.time{display:flex;gap:8px;flex-wrap:wrap}
+.time span{font-weight:700;font-size:clamp(15px,1.5vw,19px);background:#fff;border:2px solid var(--navy);border-radius:999px;padding:6px 14px}
+.time span b{font-weight:900;color:var(--coral)}
+.letter{display:flex;flex-direction:column;gap:14px;font-size:clamp(20px,2.3vw,30px);font-weight:500;line-height:1.5}
+.blank{display:inline-block;min-width:7em;border-bottom:3px solid var(--navy)}
+.credit{position:absolute;bottom:12px;inset-inline-end:clamp(16px,4vw,48px);z-index:2;font-size:12px;opacity:.75}
+.nav{position:fixed;bottom:14px;inset-inline-start:16px;display:flex;gap:8px;align-items:center;z-index:5}
+.nav button{width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:20px;font-weight:900;background:var(--sun);border:3px solid var(--navy);color:var(--navy)}
+.nav span{min-width:60px;text-align:center;direction:ltr;unicode-bidi:isolate;font-weight:900;background:#fff;border-radius:999px;padding:4px 8px;border:2px solid var(--navy)}
+.barw{position:fixed;top:0;inset-inline:0;height:6px;background:rgba(34,57,91,.15);z-index:5}
+.bar{height:100%;background:var(--coral);transition:width .3s}
+.rules3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rules3 .box{display:flex;flex-direction:column;gap:6px}
+.rules3 em{font-style:normal;font-size:clamp(34px,4vw,54px)}
+.rules3 b{font-weight:900;font-size:clamp(19px,2vw,26px);line-height:1.2}
+.rules3 p{font-size:clamp(14px,1.45vw,18px);line-height:1.45}
+.ab2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.ab2 .box{display:flex;flex-direction:column;gap:8px}
+.ab2 b{font-weight:900;font-size:clamp(22px,2.4vw,32px)}
+.ab2 p{font-size:clamp(15px,1.6vw,21px);line-height:1.45}
+.vid{display:flex;flex-direction:column;gap:clamp(12px,2vh,20px);max-width:1100px}
+.vid .big{font-weight:900;font-size:clamp(34px,5vw,74px);line-height:1.08}
+.q4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.q4 .box{background:var(--c);display:flex;flex-direction:column;gap:6px;padding:12px 14px}
+.q4 b{font-weight:900;font-size:clamp(18px,1.8vw,24px)}
+.q4 p{font-size:clamp(14px,1.35vw,17px);line-height:1.4;font-weight:500}
+/* מי אתם */
+.who{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(16px,3vw,40px);align-items:stretch}
+.hero{background:var(--c);border:3px solid var(--navy);border-radius:22px;box-shadow:8px 8px 0 var(--navy);padding:clamp(16px,2.4vw,32px);display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.hero .ax2{align-self:flex-start;font-weight:900;font-size:14px;background:var(--navy);color:#fff;border-radius:999px;padding:3px 12px}
+.hero h2{font-size:clamp(34px,4.4vw,62px)}
+.hero .emo{font-size:clamp(46px,6vw,84px);line-height:1}
+.hero p{font-size:clamp(15px,1.55vw,20px);line-height:1.45;font-weight:500}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.facts .box{padding:12px 16px;display:flex;flex-direction:column;gap:4px}
+.facts h3{font-weight:900;font-size:clamp(15px,1.5vw,19px);color:var(--coral)}
+.facts p{font-size:clamp(14px,1.35vw,17px);line-height:1.42}
+/* עשו / אל תעשו */
+.dd2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dd2 .box{padding:16px 20px}
+.dd2 h3{font-weight:900;font-size:clamp(24px,2.6vw,34px);margin-bottom:8px}
+.dd2 li{list-style:none;font-size:clamp(17px,1.9vw,25px);line-height:1.5;font-weight:500}
+.tip{font-size:clamp(16px,1.7vw,22px);font-weight:500}
+.tip b{font-weight:900}
+/* מילת שאלה */
+.qw{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(16px,4vw,56px);align-items:center}
+.qword{font-weight:900;font-size:clamp(90px,15vw,210px);line-height:.9;background:var(--c);border:4px solid var(--navy);border-radius:28px;box-shadow:8px 8px 0 var(--navy);padding:10px 28px}
+.bub{background:#fff;border:3px solid var(--navy);border-radius:24px 24px 24px 6px;padding:14px 20px;font-size:clamp(18px,2.1vw,28px);font-weight:500;line-height:1.4;box-shadow:4px 4px 0 var(--navy)}
+.aside{font-size:clamp(15px,1.6vw,20px);font-style:italic}
+.lab{background:var(--mine);border:3px solid var(--navy);border-radius:16px;padding:12px 16px;font-size:clamp(16px,1.8vw,23px);font-weight:700}
+/* בחירות */
+.vote{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.vote .box{display:flex;flex-direction:column;gap:8px;text-align:center;align-items:center}
+.vote .face{font-size:clamp(38px,4.4vw,60px)}
+.vote b{font-weight:900;font-size:clamp(17px,1.7vw,22px)}
+.vote p{font-size:clamp(14px,1.45vw,18px);line-height:1.4;font-weight:500}
+.vote .ans{background:var(--c);border:2px solid var(--navy);border-radius:999px;padding:2px 12px;font-weight:900}
+.teaser{display:flex;flex-direction:column;gap:10px}
+.teaser li{list-style:none;font-size:clamp(18px,2vw,26px);font-weight:500;background:#fff;border:3px solid var(--navy);border-radius:16px;padding:10px 16px;box-shadow:4px 4px 0 var(--navy)}
+.case{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.case span{font-weight:900;font-size:clamp(16px,1.7vw,22px);background:#fff;border:3px solid var(--navy);border-radius:14px;padding:8px 14px}
+.case i{font-style:normal;font-weight:900;font-size:24px}
+.step{visibility:hidden;opacity:0;transform:translateY(14px);transition:opacity .35s,transform .35s,visibility 0s .35s}
+.step.shown{visibility:visible;opacity:1;transform:none;transition:opacity .35s,transform .35s}
+.qs2{list-style:none;display:flex;flex-direction:column;gap:12px}
+.qs2 li{font-size:clamp(19px,2.2vw,28px);font-weight:700;background:#fff;border:3px solid var(--navy);border-radius:16px;padding:10px 18px;box-shadow:4px 4px 0 var(--navy)}
+@media (max-width:760px){
+ body{overflow:auto}
+ .in{justify-content:flex-start}
+ .row,.abroad,.st{grid-template-columns:1fr}
+ .noise,.dd,.ezt,.roles,.rules3,.ab2,.facts,.dd2,.who,.qw{grid-template-columns:1fr}
+ .q4,.vote{grid-template-columns:1fr 1fr}
+ .four{grid-template-columns:1fr 1fr}
+ .phone{width:100%;height:440px}
+ .reel{height:60vh}
+ .map{width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<main>
+<!-- ===== פתיחה: קנבה ===== -->
+<section class="s cv"><img src="img/canva1.jpg" alt="ארבעה מורים ולבורנטית אחת: מי מנהל פה את האירוע?"></section>
+<section class="s cv"><img src="img/canva2.jpg" alt="לא באנו ללמוד לרצות או לשתוק, אלא להציב גבולות ולנהל את האירוע"></section>
+<section class="s cv"><img src="img/canva3.jpg" alt="המורה עם הרעיון הגאוני: התפנה לי שיעור, נעשה ניסוי עכשיו! מה הייתם עושים?"></section>
+<section class="s cv"><img src="img/canva4.jpg" alt="שלישי, שעה שלישית, 32 תלמידים, 16 מיקרוסקופים, נא להכין. זה מייל או צו שמונה?"></section>
+<section class="s cv"><img src="img/canva5.jpg" alt="מייל עם 14 קבצים מצורפים. אפילו למדוזות יש יותר חופש!"></section>
+<section class="s cv"><img src="img/canva6.jpg" alt="לא נעים לי להוציא אותם… תוציא אותם! אני מתחננת!"></section>
+<section class="s cv"><img src="img/canva7.jpg" alt="רוצים לנהל את האירוע במקום שהאירוע ינהל אתכם?"></section>
+
+<section class="s pop"><div class="in"><div class="kick">לפני שמתחילים</div><h2>שלושה כללים לסדנה</h2>
+<div class="rules3">
+ <div class="box"><em>🔒</em><b>מה שנאמר במעבדה נשאר במעבדה</b><p>כמו פיפטה שלא שוטפה. אף אחד לא רוצה לדעת מה היה בה.</p></div>
+ <div class="box"><em>🙊</em><b>מדברים על סיטואציות, לא על מורים בשמם</b><p>גם אם כולם בחדר יודעים בדיוק על מי מדובר.</p></div>
+ <div class="box"><em>⚖️</em><b>אין סגנון טוב או רע</b><p>יש רק סגנון שעוד לא הבנו איך לדבר איתו.</p></div>
+</div></div></section>
+<!-- ===== ארץ זרה ===== -->
+<section class="s pop"><div class="in"><div class="kick">טיסה קצרה ✈️</div><h2>נחתתם במדינה זרה</h2>
+<p class="lead">לא מכירים את השפה. מנסים להזמין קפה ומקבלים מרק. מבקשים כיוון לתחנה ומגיעים לחתונה של זרים. ואז מישהו מלמד אתכם שלוש מילים בשפה המקומית, ופתאום הכול נפתח.</p>
+<p class="say">במעבדה מדברים ארבע שפות. היום לומדים כמה מילים בכל אחת.</p></div></section>
+<!-- ===== מה זו תקשורת ===== -->
+<section class="s pop"><div class="in">
+ <div class="kick">רגע לפני הסגנונות</div>
+ <h2>מה זו <span class="hl">תקשורת</span>?</h2>
+ <div class="flow"><span>מעביר/ת מסר</span><i>←</i><span>מסר</span><i>←</i><span>מקבל/ת מסר</span><i>←</i><span>פרשנות</span><i>←</i><span class="back">משוב ↩</span></div>
+ <p class="lead">לא קו ישר. יותר כמו פינג־פונג עם רעשי רקע.</p>
+ <div class="noise">
+  <div class="box"><h3>רעשים מבחוץ</h3><ul><li>צלצול, 32 תלמידים ומדיח שעובד</li><li>וואטסאפ ב-07:42, בין קפה לקפה</li><li>לחץ זמן: "צריך את זה עכשיו"</li></ul></div>
+  <div class="box inner"><h3>רעשים מבפנים</h3><ul><li>עייפות, רגש, מצב רוח</li><li>אמונות: "שוב מתייחסים אליי כמו לספקית"</li><li>ניסיון קודם עם אותו מורה</li></ul></div>
+ </div>
+</div></section>
+
+<section class="s pop"><div class="in"><div class="vid"><div class="kick">🎬 סרטון</div><div class="big">זה לא על המסמר</div>
+<a class="btn" href="https://www.youtube.com/watch?v=-4EDhdAHrOg" target="_blank" rel="noopener">▶ It's Not About the Nail · Jason Headley</a></div></div></section>
+<section class="s pop"><div class="in"><div class="kick">אחרי הסרטון</div><h2>אז מה היה שם?</h2>
+<ul class="qs2"><li>היא רצתה שיקשיבו לה. הוא רצה לתקן.</li><li>מי צודק?</li><li>ועל מי האחריות שהמסר יעבור?</li></ul></div></section>
+<section class="s pop"><div class="in"><div class="kick">אחרי הסרטון</div><h2>שני סוגים של תקשורת טובה</h2>
+<div class="ab2">
+ <div class="box" style="background:#E2F3E6"><b>תקשורת אפקטיבית</b><p>תקשורת שמשיגה את התוצאה.</p><p>במעבדה: המבחנות מוכנות, בזמן, בריכוז הנכון.</p></div>
+ <div class="box" style="background:#E3E9FA"><b>תקשורת מקרבת</b><p>המסר עובר בבהירות לשני הצדדים.</p><p>במעבדה: וגם אף אחד לא יצא מהשיחה עם כאב בטן.</p></div>
+</div>
+<p class="burst">את המורה אי אפשר לשנות. את הדרך שבה אני מגיבה, אפשר.</p></div></section>
+<!-- ===== שאלון ===== -->
+<section class="s pop"><div class="in"><div class="row">
+ <div style="display:flex;flex-direction:column;gap:18px;min-width:0">
+  <div class="kick">תורכם</div>
+  <h2>ואיזו שפה <span class="hl">אתם</span> מדברים?</h2>
+  <ol class="steps">
+   <li>סורקים את הקוד בטלפון.</li>
+   <li>עונים על השאלון הקצר. בוחרים מה מתאר אתכם יותר, בלי לחשוב יותר מדי.</li>
+   <li>מסמנים את הנקודה על המפה, ושומרים את התוצאה בטלפון.</li>
+  </ol>
+  <p class="burst">זו לא אנליזה פסיכולוגית. זה כלי להבין איך אנחנו מתקשרים.</p>
+ </div>
+ <div class="qr"><div id="qr" role="img" aria-label="קוד QR לשאלון מה הסגנון שלי"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="segno"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#22395b" d="M4 4.5h7m1 0h2m1 0h3m2 0h1m1 0h3m1 0h3m1 0h7m-33 1h1m5 0h1m1 0h2m1 0h1m1 0h1m2 0h3m1 0h1m1 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m2 0h2m2 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m3 0h4m2 0h1m3 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h1m4 0h1m4 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m4 0h3m5 0h1m1 0h2m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m8 0h1m2 0h1m2 0h1m-24 1h1m1 0h2m1 0h3m2 0h3m1 0h1m2 0h2m1 0h5m1 0h1m2 0h1m1 0h2m-33 1h1m3 0h1m4 0h2m1 0h1m3 0h2m1 0h2m1 0h2m2 0h2m1 0h4m-32 1h1m1 0h1m1 0h3m1 0h4m1 0h1m1 0h3m2 0h5m1 0h3m1 0h2m-26 1h4m2 0h3m2 0h2m6 0h2m1 0h1m-29 1h2m1 0h1m1 0h1m1 0h1m1 0h3m4 0h1m1 0h1m2 0h4m1 0h3m-30 1h1m3 0h2m1 0h1m1 0h1m6 0h2m1 0h1m2 0h1m1 0h2m1 0h1m3 0h1m-32 1h1m2 0h1m1 0h2m1 0h3m2 0h1m1 0h2m1 0h2m1 0h2m3 0h1m-23 1h1m2 0h5m1 0h2m1 0h1m2 0h4m2 0h3m2 0h1m-30 1h3m1 0h2m3 0h1m1 0h4m2 0h4m1 0h1m1 0h2m1 0h3m-28 1h3m1 0h3m1 0h1m1 0h5m2 0h1m2 0h4m1 0h2m1 0h2m-33 1h3m1 0h1m1 0h2m4 0h1m1 0h3m3 0h2m5 0h2m1 0h2m-32 1h2m1 0h2m2 0h1m3 0h3m1 0h3m1 0h1m2 0h1m1 0h1m3 0h1m-27 1h1m3 0h1m1 0h2m1 0h1m3 0h1m3 0h1m1 0h1m2 0h1m4 0h2m1 0h1m-33 1h3m1 0h1m2 0h5m1 0h1m1 0h1m2 0h2m1 0h3m2 0h1m2 0h1m2 0h1m-31 1h2m1 0h2m1 0h1m3 0h2m2 0h1m3 0h1m2 0h1m3 0h1m3 0h2m-32 1h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m5 0h4m2 0h2m2 0h1m-33 1h1m2 0h2m1 0h5m1 0h1m2 0h1m1 0h3m3 0h6m2 0h1m-24 1h1m1 0h2m1 0h5m1 0h1m2 0h3m3 0h2m-30 1h7m1 0h1m2 0h2m6 0h1m3 0h2m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h3m2 0h1m2 0h7m3 0h3m-31 1h1m1 0h3m1 0h1m3 0h2m3 0h1m1 0h1m1 0h1m1 0h8m1 0h3m-33 1h1m1 0h3m1 0h1m1 0h3m6 0h1m2 0h1m1 0h2m3 0h1m1 0h2m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h5m2 0h1m2 0h1m3 0h1m1 0h2m2 0h1m-31 1h1m5 0h1m3 0h1m4 0h3m2 0h1m1 0h3m1 0h3m3 0h1m-33 1h7m1 0h2m1 0h2m2 0h4m2 0h3m4 0h1m1 0h1"/></svg></div><a class="btn" href="https://hagit2303.github.io/sadnat-laborantim/quiz.html" target="_blank" rel="noopener">לשאלון ←</a><small>hagit2303.github.io/sadnat-laborantim</small></div>
+</div></div></section>
+
+<!-- ===== המפה ===== -->
+<section class="s pop"><div class="in"><div class="row">
+ <div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+  <div class="kick">חוזרים מהשאלון</div>
+  <h2>שני צירים, ארבעה סגנונות</h2>
+  <p class="lead"><b>למעלה–למטה:</b> בלתי רשמי מול רשמי.<br><b>שמאל–ימין:</b> דומיננטי מול פסיבי.</p>
+  <p class="say">הנקודה מראה לאן אנחנו נוטים, לא מי אנחנו. בכל אחד יש קצת מכל ריבוע.</p>
+ </div>
+ <div class="map">
+  <span class="ax t">בלתי רשמי</span><span class="ax b">רשמי</span><span class="ax l">דומיננטי</span><span class="ax r">פסיבי</span>
+  <div class="q" style="background:var(--tom)"><em>🤗</em><b>תומך</b><span>עם מי?</span></div>
+  <div class="q" style="background:var(--mek)"><em>🎉</em><b>מקדם</b><span>מי?</span></div>
+  <div class="q" style="background:var(--men)"><em>🔬</em><b>מנתח</b><span>איך?</span></div>
+  <div class="q" style="background:var(--mash)"><em>🚀</em><b>משימתי</b><span>למה?</span></div>
+ </div>
+</div></div></section>
+
+<section class="s pop"><div class="in">
+<div class="kick">מחליפים מקומות!</div><h2>כל סגנון לפינה שלו</h2>
+<div class="map" style="width:min(62vh,560px);align-self:center">
+ <span class="ax t">בלתי רשמי</span><span class="ax b">רשמי</span><span class="ax l">דומיננטי</span><span class="ax r">פסיבי</span>
+ <div class="q" style="background:var(--tom)"><em>🤗</em><b>תומכים</b></div>
+ <div class="q" style="background:var(--mek)"><em>🎉</em><b>מקדמים</b></div>
+ <div class="q" style="background:var(--men)"><em>🔬</em><b>מנתחים</b></div>
+ <div class="q" style="background:var(--mash)"><em>🚀</em><b>משימתיים</b></div>
+</div></div></section>
+<!-- ===== משימתי ===== -->
+<section class="s pop"><div class="in"><div class="who" style="--c:var(--mash)">
+ <div class="hero"><span class="ax2">רשמי + דומיננטי</span><div class="emo">🚀</div><h2>משימתיים,<br>מי אתם?</h2><p>ממוקדי תוצאה, החלטיים ופועלים מהר. עוזרים לכולם לתעדף ולהגיע לשורה התחתונה.</p><p style="font-weight:700">שורה תחתונה · יעילות · קצר ולעניין · עלות מול תועלת · תקתוק · יעדים</p></div>
+ <div class="facts"><div class="box"><h3>איך מזהים</h3><p>משפטים קצרים, מבט לשעון, עמדה חזקה. "תכלס?"</p></div><div class="box"><h3>מעריכים כש…</h3><p>יש תוצאות, עומדים בזמנים ונותנים להם אחריות.</p></div><div class="box"><h3>חוששים מ…</h3><p>בזבוז זמן, וניסיון להחליט במקומם.</p></div><div class="box"><h3>החוזקה במעבדה</h3><p>סוגרים משימות, בוחרים בין חלופות ומזיזים דברים.</p></div><div class="box"><h3>בלחץ</h3><p>נעשים קצרים וחדים עוד יותר. קצרנות אינה זלזול, וגם אינה היתר לדרישה כוחנית.</p></div><div class="box"><h3>נקודת צמיחה</h3><p>סבלנות לתהליך ושיתוף פעולה עם אחרים.</p></div></div>
+</div></div></section>
+<section class="s pop"><div class="in"><div class="kick">🚀 משימתי</div><h2>איך מדברים עם משימתי?</h2>
+<div class="dd2"><div class="box do"><h3>✔ עשו</h3><ul><li>שורה תחתונה</li><li>קצב מהיר</li><li>מה יוצא לו מזה</li><li>מה המשימה הבאה</li></ul></div><div class="box dont"><h3>✖ אל תעשו</h3><ul><li>איחורים</li><li>חוסר דיוק</li><li>פירוט יתר</li><li>סטייה מהעניין</li></ul></div></div>
+<p class="tip"><b>טיפ ללבורנט/ית:</b> לענות קצר: מה מוכן, מה חסר, מה הפתרון.</p>
+<p class="burst">גורמים לו להרגיש: סמכותי ומוביל</p></div></section>
+<section class="s pop"><div class="in"><div class="qw" style="--c:var(--mash)"><div class="qword">למה?</div>
+<div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="kick">מילת השאלה של המשימתי</div><p class="lead">ככה הוא שולח לכם הודעה:</p><div class="bub">מחר. 8:00. אנזימים. 24.</div><p class="aside">(זה לא כעס. זו פשוט הודעה שלמה מבחינתו.)</p><p class="lead">ומה עונים במעבדה?</p><div class="lab">"מוכן מחר ב-8:00. חסר: ___. הפתרון: ___."</div></div></div></div></section>
+<!-- ===== מקדם ===== -->
+<section class="s pop"><div class="in"><div class="who" style="--c:var(--mek)">
+ <div class="hero"><span class="ax2">בלתי רשמי + דומיננטי</span><div class="emo">🎉</div><h2>מקדמים,<br>מי אתם?</h2><p>מעלים רעיונות, משדרים התלהבות ומניעים אחרים. איתם אף פעם לא משעמם, ולפעמים גם לא מסודר.</p><p style="font-weight:700">כריזמטי · מלהיב · יצירתי · ספונטני · רעיונות חדשים · כיף · פרצי אנרגיה</p></div>
+ <div class="facts"><div class="box"><h3>איך מזהים</h3><p>מדברים מהר, עם סיפורים, דוגמאות ואימוג'ים, וכבר קופצים לרעיון הבא.</p></div><div class="box"><h3>מעריכים כש…</h3><p>מכירים בהם, מפרגנים ומתלהבים איתם.</p></div><div class="box"><h3>חוששים מ…</h3><p>שעמום, דחייה, ויותר מדי עובדות ופרטים.</p></div><div class="box"><h3>החוזקה במעבדה</h3><p>יוזמה, ניסויים חדשים וגיוס אנשים.</p></div><div class="box"><h3>בלחץ</h3><p>מדברים עוד יותר, ולפעמים מבטיחים יותר ממה שאפשר.</p></div><div class="box"><h3>נקודת צמיחה</h3><p>תכנון הביצוע ועמידה ביעדים עד הסוף.</p></div></div>
+</div></div></section>
+<section class="s pop"><div class="in"><div class="kick">🎉 מקדם</div><h2>איך מדברים עם מקדם?</h2>
+<div class="dd2"><div class="box do"><h3>✔ עשו</h3><ul><li>מחמאות</li><li>לזרום עם הרעיון</li><li>משימות קצרות</li><li>לגוון</li></ul></div><div class="box dont"><h3>✖ אל תעשו</h3><ul><li>ביקורת</li><li>הפעלת סמכות</li><li>לשעמם</li><li>פרטי פרטים</li></ul></div></div>
+<p class="tip"><b>טיפ ללבורנט/ית:</b> לפרגן לרעיון, ואז לסגור בקצרה מה צריך ומתי אפשר. בטיחות קודמת להתלהבות.</p>
+<p class="burst">גורמים לו להרגיש: יחיד ומיוחד</p></div></section>
+<section class="s pop"><div class="in"><div class="qw" style="--c:var(--mek)"><div class="qword">מי?</div>
+<div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="kick">מילת השאלה של המקדם</div><p class="lead">ככה הוא שולח לכם הודעה:</p><div class="bub">הייייי 🤩🤩 ראיתי בטיקטוק ניסוי עם קרח יבש!!! עושים מחר?? את מלכה 👑🔥</div><p class="aside">(שאלתם "כמה תלמידים?" והוא כבר בניסוי הבא.)</p><p class="lead">ומה עונים במעבדה?</p><div class="lab">"רעיון מעולה! בשבוע הבא זה אפשרי. אני רק צריכה לדעת כמה קבוצות."</div></div></div></div></section>
+<!-- ===== מנתח ===== -->
+<section class="s pop"><div class="in"><div class="who" style="--c:var(--men)">
+ <div class="hero"><span class="ax2">רשמי + פסיבי</span><div class="emo">🔬</div><h2>מנתחים,<br>מי אתם?</h2><p>מבקשים פרטים ומעדיפים דיוק. חושבים לפני שמדברים, ומחליטים רק כשהנתונים על השולחן.</p><p style="font-weight:700">חשיבה לוגית · דייקנות · יסודיות · איסוף נתונים · סדר וארגון · שיטתיות</p></div>
+ <div class="facts"><div class="box"><h3>איך מזהים</h3><p>הרבה שאלות, קבצים מצורפים, "לפי נפח או לפי מסה?"</p></div><div class="box"><h3>מעריכים כש…</h3><p>מקבלים מידע מלא, מראש, ויש זמן לחשוב.</p></div><div class="box"><h3>חוששים מ…</h3><p>טעויות, חוסר ודאות ושינויים ברגע האחרון.</p></div><div class="box"><h3>החוזקה במעבדה</h3><p>פרוטוקולים, איכות, מלאי ובטיחות. לפעמים מזהים את הטעות שכולם פספסו.</p></div><div class="box"><h3>בלחץ</h3><p>נסוגים לפרטים ומתעכבים בהחלטה. הם לא "איטיים" ולא "חסרי רגש".</p></div><div class="box"><h3>נקודת צמיחה</h3><p>תקשורת בין־אישית, והחלטה גם כשלא כל הנתונים בידיים.</p></div></div>
+</div></div></section>
+<section class="s pop"><div class="in"><div class="kick">🔬 מנתח</div><h2>איך מדברים עם מנתח?</h2>
+<div class="dd2"><div class="box do"><h3>✔ עשו</h3><ul><li>לפרט</li><li>לעדכן מראש על כל שינוי</li><li>להקשיב עד הסוף</li><li>להזמין שאלות</li></ul></div><div class="box dont"><h3>✖ אל תעשו</h3><ul><li>"בערך"</li><li>קפיצה בין נושאים</li><li>הפתעות</li><li>"סמוך עליי, יהיה בסדר"</li></ul></div></div>
+<p class="tip"><b>טיפ ללבורנט/ית:</b> רשימת ציוד מסודרת, פרוטוקול כתוב, ושינויים רק עם התראה מראש.</p>
+<p class="burst">גורמים לו להרגיש: בעל הידע ופותר הבעיות</p></div></section>
+<section class="s pop"><div class="in"><div class="qw" style="--c:var(--men)"><div class="qword">איך?</div>
+<div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="kick">מילת השאלה של המנתח</div><p class="lead">ככה הוא שולח לכם הודעה:</p><div class="bub">שלום, מצרפת קובץ אקסל עם 3 לשוניות. הריכוזים בטור D, המולריות בטור F. בבקשה לאשר קבלה. 📎📎📎</div><p class="aside">(ואם עניתם "בערך 2 גרם", הוא כבר לא ישן בלילה.)</p><p class="lead">ומה עונים במעבדה?</p><div class="lab">"הכול בקובץ, לפי סדר השלבים. אם משהו ישתנה, אעדכן מראש."</div></div></div></div></section>
+<!-- ===== תומך ===== -->
+<section class="s pop"><div class="in"><div class="who" style="--c:var(--tom)">
+ <div class="hero"><span class="ax2">בלתי רשמי + פסיבי</span><div class="emo">🤗</div><h2>תומכים,<br>מי אתם?</h2><p>קשובים, משתפים פעולה ויוצרים ביטחון. חשוב להם לעזור, ושיהיה טוב לכולם.</p><p style="font-weight:700">סבלנות · הקשבה · פרגון · הרמוניה · עבודת צוות · דאגה לאחר · חום</p></div>
+ <div class="facts"><div class="box"><h3>איך מזהים</h3><p>מבקשים בעקיפין, מתנצלים, "רק אם נוח לך", ומתקשים לומר "לא".</p></div><div class="box"><h3>מעריכים כש…</h3><p>דואגים להם, תומכים בהם ועובדים יחד.</p></div><div class="box"><h3>חוששים מ…</h3><p>עימות, דחייה, ושלא ידאגו להם.</p></div><div class="box"><h3>החוזקה במעבדה</h3><p>ליווי, תיאום, קליטת עובדים חדשים ושיחות רגישות.</p></div><div class="box"><h3>בלחץ</h3><p>נסגרים ושותקים. שקט אינו בהכרח הסכמה.</p></div><div class="box"><h3>נקודת צמיחה</h3><p>אסרטיביות, גבולות ועצמאות.</p></div></div>
+</div></div></section>
+<section class="s pop"><div class="in"><div class="kick">🤗 תומך</div><h2>איך מדברים עם תומך?</h2>
+<div class="dd2"><div class="box do"><h3>✔ עשו</h3><ul><li>יחס חם</li><li>לעבוד יחד</li><li>לעודד</li><li>להראות אכפתיות</li></ul></div><div class="box dont"><h3>✖ אל תעשו</h3><ul><li>לעמת</li><li>להתעלם</li><li>להפתיע</li><li>סימני קריאה!!!</li></ul></div></div>
+<p class="tip"><b>טיפ ללבורנט/ית:</b> לשאול בחום מה בדיוק צריך, ולהציע להכין יחד. בלי תשובות חדות בוואטסאפ.</p>
+<p class="burst">גורמים לו להרגיש: מוערך ומחובר</p></div></section>
+<section class="s pop"><div class="in"><div class="qw" style="--c:var(--tom)"><div class="qword">עם מי?</div>
+<div style="display:flex;flex-direction:column;gap:14px;min-width:0"><div class="kick">מילת השאלה של התומך</div><p class="lead">ככה הוא שולח לכם הודעה:</p><div class="bub">היי, מקווה שאת בסדר 💛 אם זה לא מסובך מדי… אולי מחר… רק אם מתאים לך כמובן 🙏</div><p class="aside">(מה הוא צריך? מעבדה מלאה. הוא פשוט לא יגיד את זה.)</p><p class="lead">ומה עונים במעבדה?</p><div class="lab">"בשמחה. בוא נכין את זה יחד: מה בדיוק צריך, ולאיזה יום?"</div></div></div></div></section>
+<!-- ===== סיכום ===== -->
+<section class="s pop"><div class="in">
+ <div class="kick">הכול בשקף אחד</div>
+ <h2>ארבע שפות, משפט אחד לכל אחת</h2>
+ <div class="four">
+  <div class="box" style="--c:var(--mash)"><em>🚀</em><b>משימתי</b><i>למה?</i><p>"שורה תחתונה: מוכן בשלישי לפני השעה השלישית."</p></div>
+  <div class="box" style="--c:var(--mek)"><em>🎉</em><b>מקדם</b><i>מי?</i><p>"רעיון מעולה! נבנה אותו יחד."</p></div>
+  <div class="box" style="--c:var(--men)"><em>🔬</em><b>מנתח</b><i>איך?</i><p>"הכול בקובץ אחד, לפי הסדר."</p></div>
+  <div class="box" style="--c:var(--tom)"><em>🤗</em><b>תומך</b><i>עם מי?</i><p>"אני איתך. נקבע יחד."</p></div>
+ </div>
+ <p class="burst">אין סגנון טוב או רע. החלפת סגנון אינה כניעה: גבולות ובטיחות נשארים.</p>
+</div></section>
+
+<section class="s pop"><div class="in"><div class="vid"><div class="kick">🎬 סרטון</div><div class="big">"7 קווים אדומים, מאונכים זה לזה, חלקם בדיו ירוקה"</div>
+<a class="btn" href="https://www.youtube.com/watch?v=BKorP55Aqvg" target="_blank" rel="noopener">▶ The Expert · Lauris Beinerts</a></div></div></section>
+<section class="s pop"><div class="in"><div class="kick">אחרי הסרטון</div><h2>איזה סגנון יש לכל דמות בישיבה?</h2>
+<p class="lead">ואיך כל סגנון היה עונה למומחה?</p><div class="q4">
+ <div class="box" style="--c:var(--mash)"><b>🚀 משימתי</b><p>"כמה זמן זה ייקח וכמה זה עולה? תעשה ותעדכן."</p></div>
+ <div class="box" style="--c:var(--mek)"><b>🎉 מקדם</b><p>"קווים ירוקים־אדומים! ואם אחד מהם יהיה בצורת חתול?"</p></div>
+ <div class="box" style="--c:var(--men)"><b>🔬 מנתח</b><p>"רגע. קו אדום בדיו ירוקה? אפשר לנסח את הדרישה מחדש?"</p></div>
+ <div class="box" style="--c:var(--tom)"><b>🤗 תומך</b><p>"אני בטוח שנמצא פתרון שכולם יהיו מרוצים ממנו. אולי נשב יחד?"</p></div>
+</div>
+</div></section>
+<section class="s pop"><div class="in" style="align-items:center;text-align:center"><div style="font-size:clamp(80px,12vw,160px)">☕</div><h1>הפסקה</h1><p class="lead">15 דקות. משימתיים: 15. מקדמים: בערך 15. מנתחים: 15:00 דקות, לא 14:59. תומכים: יחכו שכולם יחזרו.</p></div></section>
+<!-- ===== מבחן הטלפון ===== -->
+<!-- ===== משימתי ===== -->
+<section class="s pop"><div class="in"><div class="row st">
+ <div class="phone"><div class="scr">
+  <div class="top"><div class="av" style="background-image:url(img/canva4.jpg);background-position:16% 30%"></div><div><b>המורה לביולוגיה</b><small>מחובר/ת</small></div></div>
+  <div class="body">
+   <div class="m sys">היום</div>
+   <div class="m">שלישי. שעה שלישית. 32 תלמידים. 16 מיקרוסקופים. נא להכין.<span class="t">07:42</span></div>
+   <div class="m">?<span class="t">08:10</span></div>
+   <div class="m me rv">בוקר טוב! 16 מיקרוסקופים יהיו מוכנים בשלישי לפני השעה השלישית. אני צריכה עד מחר את סוג הדגימה.<span class="t">08:12</span></div>
+   <div class="m rv">תאי בצל. תודה 👍<span class="t">08:13</span></div>
+  </div>
+ </div></div>
+ <div class="panel">
+  <div class="pre" style="display:flex;flex-direction:column;gap:16px"><div class="kick">מבחן הטלפון · הודעה 1 מתוך 4</div><div class="mystery">?</div><h2>מי שלח את זה?</h2><button class="btn" data-reveal>חשפו את הסגנון</button></div>
+  <div class="rv panel">
+   <div class="sty" style="--c:var(--mash)"><b>🚀 משימתי</b><i>שואל: למה?</i></div>
+   <p class="spot"><b>איך מזהים:</b> החלטי/ת, ישיר/ה, קצר/ה. אוהב/ת להוביל.</p>
+   <div class="dd">
+    <div class="box do"><h3>עשו</h3><ul><li>שורה תחתונה</li><li>קצב מהיר</li><li>מה יוצא לו מזה</li><li>מה המשימה הבאה</li></ul></div>
+    <div class="box dont"><h3>אל תעשו</h3><ul><li>איחורים</li><li>חוסר דיוק</li><li>פירוט יתר</li><li>סטייה מהעניין</li></ul></div>
+   </div>
+   <p class="feel">גורמים לו להרגיש: <b>סמכותי ומוביל</b></p>
+  </div>
+ </div>
+</div></div></section>
+
+<!-- ===== מקדם ===== -->
+<section class="s pop"><div class="in"><div class="row st">
+ <div class="phone"><div class="scr">
+  <div class="top"><div class="av" style="background-image:url(img/canva3.jpg);background-position:31% 22%"></div><div><b>המורה לכימיה</b><small>מקליד/ה…</small></div></div>
+  <div class="body">
+   <div class="m sys">היום</div>
+   <div class="m">התפנה לי שיעור!!! 🔥🔥<span class="t">10:02</span></div>
+   <div class="m">יש לי רעיון גאוני! ראיתי באינסטגרם ניסוי מטורף 🤩 נעשה עכשיו?<span class="t">10:02</span></div>
+   <div class="m">את הכי טובה בעולם 🙏<span class="t">10:03</span></div>
+   <div class="m me rv">איזה רעיון! 🤩 בוא נבנה אותו יחד: תשלח לי את הסרטון, אבדוק מה בטוח ומה אפשר להכין עד מחר.<span class="t">10:05</span></div>
+   <div class="m rv">יאללה!!! 🚀<span class="t">10:05</span></div>
+  </div>
+ </div></div>
+ <div class="panel">
+  <div class="pre" style="display:flex;flex-direction:column;gap:16px"><div class="kick">מבחן הטלפון · הודעה 2 מתוך 4</div><div class="mystery">?</div><h2>מי שלח את זה?</h2><button class="btn" data-reveal>חשפו את הסגנון</button></div>
+  <div class="rv panel">
+   <div class="sty" style="--c:var(--mek)"><b>🎉 מקדם</b><i>שואל: מי?</i></div>
+   <p class="spot"><b>איך מזהים:</b> נלהב/ת, מדבר/ת מהר, עם סיפורים, דוגמאות וסימני קריאה.</p>
+   <div class="dd">
+    <div class="box do"><h3>עשו</h3><ul><li>מחמאות</li><li>לזרום עם הרעיון</li><li>משימות קצרות</li><li>לגוון</li></ul></div>
+    <div class="box dont"><h3>אל תעשו</h3><ul><li>ביקורת</li><li>הפעלת סמכות</li><li>לשעמם</li><li>פרטי פרטים</li></ul></div>
+   </div>
+   <p class="feel">גורמים לו להרגיש: <b>יחיד ומיוחד</b> · ובטיחות? קודם כול, גם כשמתלהבים.</p>
+  </div>
+ </div>
+</div></div></section>
+
+<!-- ===== מנתח ===== -->
+<section class="s pop"><div class="in"><div class="row st">
+ <div class="phone"><div class="scr">
+  <div class="top"><div class="av" style="background-image:url(img/canva5.jpg);background-position:22% 55%"></div><div><b>המורה המנחה</b><small>מחובר/ת</small></div></div>
+  <div class="body">
+   <div class="m sys">היום</div>
+   <div class="m">FW: היערכות לניסוי במרץ 📎 14 קבצים מצורפים<span class="t">21:47</span></div>
+   <div class="m">מהו הריכוז המדויק של תמיסה A? לדלל לפי נפח או לפי מסה?<span class="t">21:48</span></div>
+   <div class="m">ומה הפרש הטמפרטורה המותר בין השלבים?<span class="t">21:52</span></div>
+   <div class="m me rv">ערב טוב. הריכוז, שיטת הדילול והטמפרטורות בקובץ אחד, לפי סדר השלבים. אם משהו ישתנה, אעדכן מראש.<span class="t">07:30</span></div>
+   <div class="m rv">מצוין. תודה על הפירוט.<span class="t">07:34</span></div>
+  </div>
+ </div></div>
+ <div class="panel">
+  <div class="pre" style="display:flex;flex-direction:column;gap:16px"><div class="kick">מבחן הטלפון · הודעה 3 מתוך 4</div><div class="mystery">?</div><h2>מי שלח את זה?</h2><button class="btn" data-reveal>חשפו את הסגנון</button></div>
+  <div class="rv panel">
+   <div class="sty" style="--c:var(--men)"><b>🔬 מנתח</b><i>שואל: איך?</i></div>
+   <p class="spot"><b>איך מזהים:</b> שואל/ת הרבה שאלות, מבקש/ת פרטים מראש, נזהר/ת מטעויות.</p>
+   <div class="dd">
+    <div class="box do"><h3>עשו</h3><ul><li>לפרט</li><li>לעדכן מראש על כל שינוי</li><li>להקשיב עד הסוף</li></ul></div>
+    <div class="box dont"><h3>אל תעשו</h3><ul><li>"בערך"</li><li>קפיצה בין נושאים</li><li>הפתעות</li></ul></div>
+   </div>
+   <p class="feel">גורמים לו להרגיש: <b>בעל הידע ופותר הבעיות</b></p>
+  </div>
+ </div>
+</div></div></section>
+
+<!-- ===== תומך ===== -->
+<section class="s pop"><div class="in"><div class="row st">
+ <div class="phone"><div class="scr">
+  <div class="top"><div class="av" style="background-image:url(img/canva6.jpg);background-position:36% 32%"></div><div><b>המורה של י"א 2</b><small>מחובר/ת</small></div></div>
+  <div class="body">
+   <div class="m sys">היום</div>
+   <div class="m">בוקר טוב 🌸 מה שלומך?<span class="t">09:15</span></div>
+   <div class="m">לא נעים לי להעמיס… אבל אם יהיה לך זמן, אולי משהו קטן לכיתה? רק אם אפשר 🙏<span class="t">09:16</span></div>
+   <div class="m">ואם לא, זה בסדר גמור 🙂<span class="t">09:16</span></div>
+   <div class="m me rv">בוקר טוב 🙂 בשמחה, אני איתך. בוא נקבע יחד: איזה יום, ומה הכיתה עושה? ככה אכין בדיוק את מה שצריך.<span class="t">09:20</span></div>
+   <div class="m rv">איזה כיף, תודה ❤️<span class="t">09:21</span></div>
+  </div>
+ </div></div>
+ <div class="panel">
+  <div class="pre" style="display:flex;flex-direction:column;gap:16px"><div class="kick">מבחן הטלפון · הודעה 4 מתוך 4</div><div class="mystery">?</div><h2>מי שלח את זה?</h2><button class="btn" data-reveal>חשפו את הסגנון</button></div>
+  <div class="rv panel">
+   <div class="sty" style="--c:var(--tom)"><b>🤗 תומך</b><i>שואל: עם מי?</i></div>
+   <p class="spot"><b>איך מזהים:</b> חם/ה וקשוב/ה, מבקש/ת בעקיפין, מתקשה לומר "לא". שקט אינו בהכרח הסכמה.</p>
+   <div class="dd">
+    <div class="box do"><h3>עשו</h3><ul><li>יחס חם</li><li>לעבוד יחד</li><li>לעודד</li><li>אכפתיות</li></ul></div>
+    <div class="box dont"><h3>אל תעשו</h3><ul><li>לעמת</li><li>להתעלם</li><li>להפתיע</li><li>סימני קריאה!!!</li></ul></div>
+   </div>
+   <p class="feel">גורמים לו להרגיש: <b>מוערך ומחובר</b></p>
+  </div>
+ </div>
+</div></div></section>
+
+<section class="s pop"><div class="in"><div class="kick">🗳️ בחירות לוועד הלבורנטים (מועמדים בדיוניים)</div><h2>במי תבחרו? ומה הסגנון שלו?</h2>
+<div class="vote">
+ <div class="box" style="--c:var(--mash)"><div class="face">🧑‍💼</div><b>מועמד/ת א'</b><p>"פחות ישיבות. יותר מבחנות. מצביעים וזזים."</p><span class="ans rv">משימתי</span></div>
+ <div class="box" style="--c:var(--mek)"><div class="face">🥳</div><b>מועמד/ת ב'</b><p>"איתי כל יום במעבדה יהיה חגיגה!!! ויהיה גם מקרר חדש 🎉"</p><span class="ans rv">מקדם</span></div>
+ <div class="box" style="--c:var(--men)"><div class="face">🤓</div><b>מועמד/ת ג'</b><p>"תוכנית עבודה בת 47 סעיפים, כולל נספחים. פרק 3: מגבות נייר."</p><span class="ans rv">מנתח</span></div>
+ <div class="box" style="--c:var(--tom)"><div class="face">🤗</div><b>מועמד/ת ד'</b><p>"אני כאן בשביל כולכם. אם תרצו. רק אם נוח לכם 💛"</p><span class="ans rv">תומך</span></div>
+</div>
+<button class="btn pre" data-reveal>ספירת קולות!</button></div></section>
+<!-- ===== ע.ז.ת ===== -->
+<section class="s pop"><div class="in">
+ <div class="kick">ארגז הכלים</div>
+ <h2>ע.ז.ת: לפני שעונים</h2>
+ <div class="ezt">
+  <div class="box"><b>✋ עצרו</b><p>נשימה אחת לפני תגובה. בוואטסאפ: עשר דקות.</p></div>
+  <div class="box"><b>🔍 זהו</b><p>איזה סגנון? מה הצורך של המורה?</p></div>
+  <div class="box"><b>🔄 תרגמו</b><p>קצר / מפורט / מפרגן / חם, לפי הסגנון.</p></div>
+ </div>
+ <h2 style="font-size:clamp(24px,2.8vw,38px)">ומשפט הרתימה:</h2>
+ <p class="say">"…אני צריכה <span class="blank"></span> עד <span class="blank"></span>."</p>
+</div></section>
+
+<section class="s pop"><div class="in"><div class="kick">🎭 סדנה</div><h2>אותו סיפור. סגנונות אחרים.</h2>
+<div class="row" style="grid-template-columns:minmax(0,1fr) auto;align-items:start"><div class="roles" style="grid-template-columns:1fr">
+ <div class="box"><em>🎭</em><b>קריין/ית א'</b><p>מקריא/ה את הדמות הראשונה בתסריט.</p></div>
+ <div class="box"><em>🎭</em><b>קריין/ית ב'</b><p>מקריא/ה את הדמות השנייה.</p></div>
+ <div class="box"><em>👀</em><b>משקיף/ה</b><p>כותב/ת: איזה סגנון יש לכל דמות, ואיזה משפט הצית את הפיצוץ.</p></div>
+</div>
+<div class="qr"><div id="qr2" role="img" aria-label="קוד QR לתסריט של הקבוצה"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="segno"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#22395b" d="M4 4.5h7m1 0h2m2 0h2m2 0h5m1 0h3m1 0h7m-33 1h1m5 0h1m1 0h2m1 0h3m2 0h1m1 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m4 0h2m2 0h2m2 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h2m2 0h1m1 0h4m6 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m3 0h1m4 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m5 0h2m5 0h1m1 0h2m1 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m1 0h1m5 0h1m5 0h1m-24 1h1m1 0h2m1 0h3m6 0h1m2 0h8m1 0h1m2 0h1m1 0h2m-32 1h2m1 0h1m2 0h1m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h2m1 0h4m-31 1h2m1 0h4m3 0h1m1 0h1m1 0h2m3 0h5m1 0h3m1 0h2m-32 1h1m1 0h1m3 0h1m2 0h1m1 0h4m3 0h1m6 0h2m1 0h1m-27 1h4m1 0h1m3 0h1m4 0h1m1 0h2m1 0h4m1 0h3m-30 1h1m1 0h3m3 0h1m7 0h4m2 0h1m1 0h2m1 0h1m3 0h1m-31 1h2m1 0h3m4 0h3m1 0h2m1 0h5m3 0h1m-27 1h1m1 0h1m1 0h2m1 0h2m1 0h2m4 0h1m4 0h2m2 0h3m2 0h1m-30 1h2m3 0h2m2 0h1m4 0h1m2 0h4m1 0h1m1 0h2m1 0h3m-31 1h3m1 0h2m3 0h1m1 0h1m1 0h1m1 0h2m3 0h1m2 0h4m1 0h2m1 0h2m-33 1h1m4 0h4m1 0h1m3 0h3m3 0h3m4 0h2m1 0h2m-29 1h1m1 0h1m2 0h1m2 0h1m3 0h3m1 0h1m4 0h1m3 0h1m-29 1h2m1 0h2m1 0h3m2 0h3m1 0h5m1 0h1m2 0h1m4 0h2m1 0h1m-33 1h1m1 0h1m4 0h2m1 0h1m1 0h2m1 0h1m2 0h4m1 0h1m2 0h1m2 0h1m2 0h1m-28 1h2m2 0h1m1 0h2m1 0h1m5 0h1m2 0h1m3 0h1m3 0h2m-32 1h1m1 0h1m4 0h3m1 0h1m1 0h1m1 0h1m5 0h4m2 0h2m-30 1h1m2 0h1m1 0h2m2 0h1m3 0h3m1 0h2m4 0h6m3 0h1m-25 1h2m1 0h2m1 0h3m2 0h1m2 0h3m3 0h2m-30 1h7m1 0h4m2 0h1m3 0h2m2 0h3m1 0h1m1 0h1m-29 1h1m5 0h1m1 0h2m3 0h1m1 0h1m3 0h6m3 0h3m-31 1h1m1 0h3m1 0h1m5 0h2m1 0h1m2 0h2m1 0h8m1 0h3m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m1 0h2m2 0h1m2 0h1m3 0h1m1 0h2m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m3 0h1m1 0h2m2 0h1m-31 1h1m5 0h1m7 0h1m1 0h2m1 0h2m1 0h3m1 0h3m3 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m2 0h5m1 0h3m4 0h1m1 0h1"/></svg></div><b style="font-weight:900">סורקים ← התסריט של הקבוצה</b></div></div>
+<p class="burst">וזה תמיד נגמר בפיצוץ 💥</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">🎤 במה</div><h2>זוג מתנדבים עולה לבמה</h2>
+<div class="case"><span>🎬 מקריאים</span><i>←</i><span>💥 הפיצוץ</span><i>←</i><span>💡 איך אפשר לנהל את זה אחרת?</span><i>←</i><span>✅ ואיך זה נשמע בשפה הנכונה</span></div>
+<p class="burst">החלפת סגנון אינה כניעה. גבולות ובטיחות נשארים.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">💡 תובנה</div><h2>גם באותה שפה זה מתפוצץ</h2>
+<div class="four">
+ <div class="box" style="--c:var(--mash)"><em>🚀🚀</em><b>שני משימתיים</b><p>מרוץ. כל אחד סופר, אף אחד לא מקשיב.</p></div>
+ <div class="box" style="--c:var(--mek)"><em>🎉🎉</em><b>שני מקדמים</b><p>מסיבה. 80 מגשים, אפס מדבקות.</p></div>
+ <div class="box" style="--c:var(--men)"><em>🔬🔬</em><b>שני מנתחים</b><p>ויכוח על סעיף 4. הבוחן כבר בפנים.</p></div>
+ <div class="box" style="--c:var(--tom)"><em>🤗🤗</em><b>שני תומכים</b><p>"סליחה." "לא, את סליחה." ואף אחד לא אמר מה חסר.</p></div>
+</div>
+<p class="burst">לדבר באותה שפה זה לא מספיק. צריך לדעת איך אנחנו נעים, ולעצור לפני שזה מתנגש.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">💡 ומה עם ההפכים?</div><h2>מול הסגנון המנוגד צריך הכי הרבה תרגום</h2>
+<div class="ab2">
+ <div class="box"><b>🚀 משימתי ↔ 🤗 תומך</b><p>מהירות ותוצאה מול קשר וביטחון.</p><p>המשימתי שומע "חפירה". התומך שומע "קרירות".</p></div>
+ <div class="box"><b>🎉 מקדם ↔ 🔬 מנתח</b><p>רעיון והתלהבות מול פרטים ודיוק.</p><p>המקדם שומע "ביקורת". המנתח שומע "בערך".</p></div>
+</div>
+<p class="burst">ההפך שלכם הוא גם המשלים שלכם. ביחד, המעבדה עובדת.</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">שאלתם…</div><h2>האיש האדום? האיש הצהוב?</h2>
+<p class="lead">מודל הצבעים מהספר "מוקף באידיוטים" (תומאס אריקסון) קרוב לארבעת הסגנונות שלנו.</p>
+<div class="four">
+ <div class="box" style="--c:var(--mash)"><em>🔴</em><b>אדום</b><i>≈ משימתי</i></div>
+ <div class="box" style="--c:var(--mek)"><em>🟡</em><b>צהוב</b><i>≈ מקדם</i></div>
+ <div class="box" style="--c:var(--tom)"><em>🟢</em><b>ירוק</b><i>≈ תומך</i></div>
+ <div class="box" style="--c:var(--men)"><em>🔵</em><b>כחול</b><i>≈ מנתח</i></div>
+</div>
+<p class="say">קרוב, לא זהה. "מוקף באידיוטים" הוא ספר פופולרי, לא מחקר. והצבעים במצגת? לא במקרה 😉</p></div></section>
+<section class="s pop"><div class="in"><div class="kick">📚 לקריאה נוספת</div><h2>דף לכל סגנון, בשפה שלו</h2>
+<div class="four">
+ <div class="box" style="--c:var(--mash)"><em>🚀</em><b>משימתיים</b><p>השורה התחתונה. 40 שניות קריאה.</p></div>
+ <div class="box" style="--c:var(--mek)"><em>🎉</em><b>מקדמים</b><p>סיפור, פתקים צבעוניים ואתגר.</p></div>
+ <div class="box" style="--c:var(--men)"><em>🔬</em><b>מנתחים</b><p>טבלת מודלים, מקורות והערות שוליים.</p></div>
+ <div class="box" style="--c:var(--tom)"><em>🤗</em><b>תומכים</b><p>מכתב אישי וחם.</p></div>
+</div></div></section>
+<!-- ===== סיום ===== -->
+<section class="s pop"><div class="in">
+ <div class="kick">לפני שהולכים</div>
+ <h2>מכתב קטן לעצמי ✉️</h2>
+ <div class="letter box">
+  <p>אדם אחד שאני עובד/ת איתו: <span class="blank"></span></p>
+  <p>הסגנון שלו כנראה: <span class="blank"></span></p>
+  <p>מחר אעשה אחרת: <span class="blank"></span></p>
+ </div>
+ <p class="burst">את המורה אי אפשר לשנות. את הדרך שבה אני מגיבה, אפשר.</p>
+</div></section>
+
+<section class="s pop"><div class="in">
+<div class="kick">🎁 שתי מתנות לדרך</div><h2>תודה שהייתם איתי היום 💛</h2>
+<div class="ab2" style="align-items:start">
+ <div class="box" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><b>🧭 מה הסגנון שלי? הגרסה המורחבת</b><div class="qr" style="box-shadow:none;border:0;padding:0"><div id="qr3" role="img" aria-label="קוד QR לגרסה המורחבת"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 41 41" class="segno"><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#22395b" d="M4 4.5h7m5 0h2m2 0h5m1 0h3m1 0h7m-33 1h1m5 0h1m6 0h5m3 0h2m1 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h1m4 0h1m1 0h3m3 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m3 0h4m6 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h2m3 0h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h3m4 0h2m1 0h1m1 0h1m5 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m3 0h1m1 0h2m2 0h1m2 0h1m2 0h1m-25 1h1m1 0h5m2 0h2m1 0h6m2 0h1m2 0h1m2 0h5m-31 1h3m1 0h1m2 0h1m1 0h1m1 0h2m3 0h2m1 0h2m1 0h2m2 0h2m1 0h4m-32 1h1m4 0h2m2 0h2m3 0h2m1 0h1m1 0h1m1 0h1m2 0h2m1 0h1m1 0h2m-32 1h1m3 0h2m3 0h1m4 0h1m1 0h1m1 0h1m2 0h2m1 0h3m1 0h4m-31 1h1m3 0h2m1 0h2m2 0h1m4 0h1m1 0h1m2 0h4m1 0h3m-29 1h1m1 0h2m3 0h3m3 0h3m2 0h3m1 0h1m1 0h2m2 0h4m-33 1h1m1 0h2m1 0h2m1 0h4m12 0h5m1 0h2m-32 1h1m3 0h2m1 0h2m1 0h2m4 0h1m2 0h4m2 0h3m2 0h1m-31 1h2m1 0h1m1 0h2m1 0h5m1 0h1m2 0h1m1 0h1m4 0h2m1 0h2m3 0h1m-33 1h1m1 0h4m1 0h1m2 0h4m4 0h3m1 0h2m2 0h2m1 0h2m1 0h1m-33 1h2m4 0h5m3 0h3m3 0h3m4 0h2m1 0h2m-30 1h1m1 0h2m4 0h1m1 0h2m2 0h1m1 0h6m2 0h5m1 0h1m-30 1h1m2 0h1m2 0h1m1 0h1m5 0h1m4 0h1m2 0h1m1 0h3m1 0h2m-33 1h4m1 0h1m1 0h2m1 0h1m2 0h3m2 0h4m1 0h1m2 0h1m2 0h1m2 0h1m-33 1h1m1 0h1m3 0h1m1 0h1m6 0h1m1 0h2m1 0h2m2 0h1m1 0h1m2 0h3m-32 1h1m1 0h1m1 0h1m2 0h2m4 0h3m2 0h1m2 0h1m1 0h1m3 0h1m1 0h3m-32 1h1m1 0h2m1 0h2m2 0h1m3 0h3m1 0h2m4 0h6m3 0h1m-25 1h1m7 0h7m1 0h1m3 0h1m1 0h1m1 0h1m-33 1h7m4 0h2m1 0h3m4 0h1m1 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m1 0h3m2 0h1m1 0h1m3 0h6m3 0h3m-31 1h1m1 0h3m1 0h1m1 0h2m1 0h3m3 0h1m1 0h1m2 0h1m1 0h6m1 0h1m-32 1h1m1 0h3m1 0h1m1 0h3m2 0h3m1 0h9m2 0h2m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h3m3 0h2m1 0h1m6 0h1m1 0h2m2 0h1m-31 1h1m5 0h1m2 0h1m5 0h2m1 0h1m1 0h3m5 0h3m-31 1h7m1 0h2m3 0h1m3 0h1m5 0h3m1 0h1m3 0h1"/></svg></div></div><p>הכול על הסגנון שלכם, עם תרגול</p></div>
+ <div class="box" style="display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center"><b>🌟 חמשת מקורות ההצלחה</b><div class="qr" style="box-shadow:none;border:0;padding:0"><div id="qr4" role="img" aria-label="קוד QR למצגת ההצלחות"><svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45 45" class="segno"><path fill="#fff" d="M0 0h45v45h-45z"/><path class="qrline" stroke="#22395b" d="M4 4.5h7m1 0h3m4 0h5m5 0h1m4 0h7m-37 1h1m5 0h1m1 0h1m1 0h3m1 0h1m5 0h3m1 0h3m3 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h2m1 0h1m3 0h1m2 0h1m1 0h3m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h2m1 0h8m1 0h1m1 0h4m3 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h4m1 0h1m2 0h2m4 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m4 0h3m3 0h2m1 0h1m2 0h3m4 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-28 1h1m3 0h1m5 0h2m2 0h5m-28 1h1m2 0h6m1 0h1m2 0h4m1 0h3m3 0h1m1 0h2m1 0h1m2 0h1m1 0h3m-33 1h1m2 0h2m2 0h1m1 0h1m3 0h1m2 0h4m2 0h2m3 0h3m1 0h1m-36 1h1m1 0h1m1 0h1m1 0h3m2 0h4m2 0h1m3 0h1m1 0h7m1 0h2m3 0h1m-36 1h1m1 0h1m3 0h3m2 0h2m1 0h1m1 0h1m8 0h1m1 0h4m2 0h3m-37 1h3m1 0h1m1 0h2m1 0h1m2 0h1m3 0h1m2 0h2m3 0h1m1 0h2m2 0h2m1 0h1m2 0h1m-37 1h1m1 0h1m1 0h1m2 0h2m6 0h4m2 0h1m1 0h1m2 0h2m4 0h2m-34 1h1m4 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m3 0h6m1 0h5m-36 1h1m1 0h1m1 0h1m4 0h1m3 0h1m1 0h4m6 0h4m1 0h1m1 0h4m-36 1h1m3 0h3m7 0h3m1 0h2m1 0h4m1 0h1m2 0h1m3 0h2m-35 1h1m2 0h2m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h1m-34 1h1m3 0h7m1 0h4m1 0h1m2 0h1m2 0h2m2 0h5m4 0h1m-36 1h3m1 0h1m2 0h1m4 0h2m3 0h1m3 0h1m2 0h2m2 0h3m1 0h1m2 0h1m-34 1h4m2 0h1m1 0h3m1 0h3m4 0h1m3 0h1m2 0h5m-34 1h2m1 0h1m3 0h2m6 0h1m2 0h2m1 0h3m2 0h3m3 0h1m1 0h1m-34 1h2m1 0h1m1 0h1m1 0h1m4 0h3m1 0h2m1 0h5m1 0h2m2 0h2m1 0h1m2 0h1m-37 1h1m1 0h3m2 0h1m1 0h3m1 0h5m2 0h1m1 0h3m1 0h1m3 0h7m-35 1h2m2 0h4m1 0h1m3 0h5m1 0h2m4 0h2m1 0h1m5 0h1m-37 1h2m2 0h2m1 0h1m1 0h3m1 0h2m1 0h1m2 0h3m1 0h1m1 0h5m2 0h3m-35 1h2m1 0h1m2 0h4m1 0h1m1 0h1m2 0h1m1 0h3m5 0h2m1 0h3m2 0h3m-37 1h1m2 0h1m1 0h1m3 0h2m2 0h1m1 0h1m4 0h1m2 0h1m3 0h1m1 0h1m1 0h4m-35 1h1m1 0h6m2 0h3m1 0h1m1 0h1m3 0h1m1 0h1m1 0h2m2 0h7m1 0h1m-29 1h2m3 0h1m1 0h1m2 0h3m6 0h2m3 0h1m1 0h1m-35 1h7m1 0h2m1 0h1m1 0h1m1 0h1m3 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m-37 1h1m5 0h1m1 0h4m2 0h7m4 0h1m1 0h2m3 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m4 0h1m1 0h2m1 0h1m1 0h7m2 0h1m-36 1h1m1 0h3m1 0h1m1 0h4m2 0h1m1 0h1m1 0h1m3 0h2m1 0h6m3 0h1m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h2m1 0h2m1 0h2m1 0h3m2 0h2m1 0h4m2 0h1m3 0h1m-37 1h1m5 0h1m2 0h1m4 0h1m1 0h5m2 0h2m1 0h1m3 0h1m1 0h5m-37 1h7m1 0h3m4 0h2m3 0h1m6 0h5m4 0h1"/></svg></div></div><p>כלי קטן לספור הצלחות אחרת</p></div>
+</div>
+<p class="lead" style="text-align:center">hagit2303.github.io/sadnat-laborantim</p>
+</div></section>
+</main>
+<div class="credit">חגית ברגמן · סגנונות תקשורת</div>
+<nav class="nav"><button class="pv" aria-label="הקודם">→</button><span></span><button class="nx" aria-label="הבא">←</button></nav>
+<div class="barw"><div class="bar"></div></div>
+<script src="deck.js?v=3"></script>
+</body></html>
