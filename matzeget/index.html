@@ -182,6 +182,13 @@ h2{font-weight:900;font-size:clamp(32px,4.2vw,58px);line-height:1.05}
 .qs2 li{font-size:clamp(19px,2.2vw,28px);font-weight:700;background:#fff;border:3px solid var(--navy);border-radius:16px;padding:10px 18px;box-shadow:4px 4px 0 var(--navy)}
 .gifts{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 .gifts b{font-weight:900;font-size:clamp(17px,1.8vw,23px)}
+.scale{position:relative;width:min(60vh,540px);max-width:calc(100% - 28px);aspect-ratio:1;justify-self:center;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,1fr);gap:4px}
+.scale .sq{background:var(--c);border:2px solid var(--navy);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;padding:4px;min-width:0;box-shadow:inset 0 -8px 0 var(--c2)}
+.scale .sq b{font-weight:900;font-size:clamp(12px,1.25vw,16px)}
+.scale .sq span{font-size:clamp(10px,1vw,13px);font-weight:700}
+.scale .sq span::before{content:"+ "}
+.scale .sq.pure{outline:3px solid var(--navy);outline-offset:-6px}
+.scale .sq:nth-child(4n+2){margin-inline-end:6px}.scale .sq:nth-child(n+9):nth-child(-n+12){margin-top:6px}
 @media (max-width:760px){.gifts{grid-template-columns:1fr}}
 @media (max-width:760px){
  body{overflow:auto}
@@ -270,6 +277,17 @@ h2{font-weight:900;font-size:clamp(32px,4.2vw,58px);line-height:1.05}
  </div>
 </div></div></section>
 
+<section class="s pop"><div class="in"><div class="row">
+<div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+ <div class="kick">קצת מזה, קצת מזה</div><h2>כל ריבוע מתחלק לארבעה</h2>
+ <p class="lead">הסגנון שלכם הוא הריבוע הגדול. הריבוע הקטן הוא הסגנון המשני.</p>
+ <p class="say">בפינות החיצוניות: סגנון "נקי". קרוב למרכז: יש בכם הרבה מכל השכנים.</p>
+ <p class="burst">איפה בדיוק נחתה הנקודה שלכם?</p>
+</div>
+<div class="scale">
+ <span class="ax t">בלתי רשמי</span><span class="ax b">רשמי</span><span class="ax l">דומיננטי</span><span class="ax r">פסיבי</span>
+ <div class="sq pure" style="--c:var(--tom);--c2:var(--tom)"><b>תומך</b><span>תומך</span></div><div class="sq" style="--c:var(--tom);--c2:var(--mek)"><b>תומך</b><span>מקדם</span></div><div class="sq" style="--c:var(--mek);--c2:var(--tom)"><b>מקדם</b><span>תומך</span></div><div class="sq pure" style="--c:var(--mek);--c2:var(--mek)"><b>מקדם</b><span>מקדם</span></div><div class="sq" style="--c:var(--tom);--c2:var(--men)"><b>תומך</b><span>מנתח</span></div><div class="sq" style="--c:var(--tom);--c2:var(--mash)"><b>תומך</b><span>משימתי</span></div><div class="sq" style="--c:var(--mek);--c2:var(--men)"><b>מקדם</b><span>מנתח</span></div><div class="sq" style="--c:var(--mek);--c2:var(--mash)"><b>מקדם</b><span>משימתי</span></div><div class="sq" style="--c:var(--men);--c2:var(--tom)"><b>מנתח</b><span>תומך</span></div><div class="sq" style="--c:var(--men);--c2:var(--mek)"><b>מנתח</b><span>מקדם</span></div><div class="sq" style="--c:var(--mash);--c2:var(--tom)"><b>משימתי</b><span>תומך</span></div><div class="sq" style="--c:var(--mash);--c2:var(--mek)"><b>משימתי</b><span>מקדם</span></div><div class="sq pure" style="--c:var(--men);--c2:var(--men)"><b>מנתח</b><span>מנתח</span></div><div class="sq" style="--c:var(--men);--c2:var(--mash)"><b>מנתח</b><span>משימתי</span></div><div class="sq" style="--c:var(--mash);--c2:var(--men)"><b>משימתי</b><span>מנתח</span></div><div class="sq pure" style="--c:var(--mash);--c2:var(--mash)"><b>משימתי</b><span>משימתי</span></div>
+</div></div></div></section>
 <section class="s pop"><div class="in">
 <div class="kick">מחליפים מקומות!</div><h2>כל סגנון לפינה שלו</h2>
 <div class="map" style="width:min(62vh,560px);align-self:center">
