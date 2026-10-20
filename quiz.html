@@ -1,0 +1,703 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>מה הסגנון שלי? מקוצר</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Secular+One&family=Assistant:wght@400;600;700&display=swap">
+<style>
+/* Layout: one narrow lab-notebook column on graph paper; the 2-axis grid is the hero of the journey */
+:root{
+  --paper:#FBFAF6; --card:#FFFFFF; --ink:#1F2433; --muted:#5D6375; --line:#DCE1EA; --grid:#E8ECF3;
+  --accent:#2F6FEB; --pin:#E0393E; --pin2:#F2B705;
+  --s-analyst:#E8A800; --s-analyst-soft:#FFF4CC;
+  --s-driver:#3F9654;  --s-driver-soft:#E2F3E6;
+  --s-expr:#E2632B;    --s-expr-soft:#FDE7DC;
+  --s-amiable:#2E3580; --s-amiable-soft:#E3E5F7;
+  --on-analyst:#2A2100;
+  --display:"Secular One","Assistant",system-ui,sans-serif;
+  --body:"Assistant",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:14px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#14171F; --card:#1C2029; --ink:#ECEFF5; --muted:#A3AABB; --line:#323847; --grid:#232835;
+  --accent:#7FA6FF; --pin:#FF6B6E; --pin2:#FFCB3D;
+  --s-analyst:#FFC93C; --s-analyst-soft:#3A3115;
+  --s-driver:#6CC384;  --s-driver-soft:#1B3323;
+  --s-expr:#FF8A55;    --s-expr-soft:#3E2418;
+  --s-amiable:#9AA2F2; --s-amiable-soft:#232849;
+  --on-analyst:#2A2100; color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#14171F; --card:#1C2029; --ink:#ECEFF5; --muted:#A3AABB; --line:#323847; --grid:#232835;
+  --accent:#7FA6FF; --pin:#FF6B6E; --pin2:#FFCB3D;
+  --s-analyst:#FFC93C; --s-analyst-soft:#3A3115;
+  --s-driver:#6CC384;  --s-driver-soft:#1B3323;
+  --s-expr:#FF8A55;    --s-expr-soft:#3E2418;
+  --s-amiable:#9AA2F2; --s-amiable-soft:#232849;
+  --on-analyst:#2A2100; color-scheme:dark;}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;}
+.wrap{max-width:560px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:18px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance;line-height:1.2}
+h1{font-size:2.3rem} h2{font-size:1.6rem} h3{font-size:1.15rem}
+p{margin:0}
+.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:.8rem;letter-spacing:.06em;color:var(--muted);font-weight:700}
+button{font:inherit;cursor:pointer}
+.btn{background:var(--ink);color:var(--paper);border:0;border-radius:999px;padding:13px 22px;font-weight:700;font-size:1.05rem}
+.btn:focus-visible,.choice:focus-visible,.ghost:focus-visible,.tab:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.ghost{background:transparent;border:1px solid var(--line);color:var(--ink);border-radius:999px;padding:9px 16px;font-weight:600}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+input[type=text]{font:inherit;width:100%;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--paper);color:var(--ink)}
+
+/* Intro */
+.hero{display:flex;flex-direction:column;gap:10px;padding-top:8px}
+.quad-mini{display:grid;grid-template-columns:1fr 1fr;gap:6px;max-width:240px}
+.quad-mini span{border-radius:10px;padding:8px 10px;font-family:var(--display);font-size:1rem;text-align:center}
+.steps{margin:0;padding-inline-start:20px;display:flex;flex-direction:column;gap:4px}
+.traps{background:var(--s-expr-soft);border-radius:12px;padding:12px 14px;font-size:.95rem}
+
+/* Questionnaire */
+.progress{display:flex;gap:4px}
+.progress i{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.progress i.done{background:var(--ink)}
+.progress i.now{background:var(--accent)}
+.pair{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:stretch}
+.choice{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:22px 10px;font-family:var(--display);font-size:1.35rem;color:var(--ink);min-height:110px;transition:transform .12s,border-color .12s,background .12s;min-width:0;overflow-wrap:anywhere}
+.choice:hover{border-color:var(--ink)}
+.choice.picked{background:var(--ink);color:var(--paper);border-color:var(--ink);transform:scale(.97)}
+.or{align-self:center;color:var(--muted);font-weight:700}
+.qnum{font-family:var(--display);font-size:1rem;color:var(--muted)}
+
+/* Sums */
+.sheet{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+.sheet th,.sheet td{border:1px solid var(--line);padding:8px 10px;text-align:center}
+.sheet th{font-weight:700;font-size:.95rem}
+.sheet .y{background:var(--s-analyst-soft)} .sheet .g{background:var(--s-driver-soft)}
+.big{font-family:var(--display);font-size:1.6rem}
+.result-line{background:var(--paper);border:1px dashed var(--muted);border-radius:12px;padding:10px 12px}
+
+/* Grid */
+.gridbox{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px}
+svg.plane{width:100%;height:auto;display:block;touch-action:manipulation;user-select:none}
+.task{display:flex;gap:12px;align-items:flex-start}
+.task b.n{flex:none;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font-family:var(--display)}
+.feedback{min-height:1.5em;font-weight:600}
+.feedback.bad{color:var(--pin)} .feedback.good{color:var(--s-driver)}
+.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(6px)}50%{transform:translateX(-6px)}75%{transform:translateX(3px)}}
+.draw{stroke-dasharray:7 7}
+.grow{animation:grow .9s ease-out both}
+@keyframes grow{from{stroke-dashoffset:400;opacity:.2}to{stroke-dashoffset:0;opacity:1}}
+.pulse{animation:pulse 1.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes pulse{50%{transform:scale(1.35)}}
+.quadfill{transition:opacity .6s}
+.hit{cursor:pointer}
+
+/* Result */
+.badge{border-radius:20px;padding:22px;display:flex;flex-direction:column;gap:8px;color:#fff}
+.badge h1{font-size:2.8rem}
+.badge.analyst{background:var(--s-analyst);color:var(--on-analyst)}
+.badge.driver{background:var(--s-driver)} .badge.expr{background:var(--s-expr)} .badge.amiable{background:var(--s-amiable)}
+:root[data-theme="dark"] .badge.amiable{color:#14171F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .badge.amiable{color:#14171F}}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border-radius:999px;padding:4px 12px;font-size:.92rem;font-weight:600;background:var(--paper);border:1px solid var(--line)}
+.dodont{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dodont>div{border-radius:12px;padding:12px;min-width:0}
+.do{background:var(--s-driver-soft)} .dont{background:var(--s-expr-soft)}
+.dodont ul{margin:6px 0 0;padding-inline-start:18px}
+.order{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.order div{border-radius:12px;padding:8px 4px;text-align:center;display:flex;flex-direction:column;gap:2px;min-width:0}
+.order small{font-size:.75rem;opacity:.85}
+.order strong{font-family:var(--display);font-weight:400;font-size:1.05rem}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:6px 14px;font-weight:700}
+.tab[aria-selected="true"]{border-color:var(--ink)}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;vertical-align:middle;margin-inline-end:6px}
+footer{font-size:.85rem;color:var(--muted);text-align:center}
+
+/* Practice */
+.chat{display:flex;flex-direction:column;gap:10px;background:var(--paper);border-radius:16px;padding:14px}
+.msg{max-width:85%;padding:10px 14px;border-radius:16px;line-height:1.45;animation:pop .35s ease-out both}
+.msg small{display:block;font-size:.75rem;color:var(--muted);font-weight:700;margin-bottom:2px}
+.msg.t{align-self:flex-start;background:var(--card);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.l{align-self:flex-end;background:var(--s-driver-soft);border-bottom-right-radius:4px}
+.msg.n{align-self:center;background:transparent;color:var(--muted);font-size:.9rem;font-style:italic;max-width:100%;text-align:center}
+@keyframes pop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.axisq{display:flex;flex-direction:column;gap:8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.four{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:12px;font-weight:700;color:var(--ink);min-width:0}
+.opt[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.opt.right{border-color:var(--s-driver);background:var(--s-driver-soft);color:var(--ink)}
+.opt.wrong{border-color:var(--pin);background:var(--s-expr-soft);color:var(--ink)}
+.opt:disabled{cursor:default}
+.clues{margin:0;padding-inline-start:20px}
+.resp{border-radius:12px;padding:10px 12px}
+.resp.bad{background:var(--s-expr-soft)} .resp.good{background:var(--s-driver-soft)}
+.score{font-family:var(--display);font-size:3rem;line-height:1}
+@media (max-width:420px){.dodont{grid-template-columns:1fr}.order{grid-template-columns:1fr 1fr}.choice{font-size:1.15rem;min-height:96px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap" dir="rtl" lang="he">
+  <main id="app" aria-live="polite"></main>
+  <footer>שאלון סגנונות תקשורת · זו לא אנליזה פסיכולוגית, אלא כלי להבין איך אנחנו מתקשרים<br>מבוסס על מודל הסגנונות החברתיים (Social Styles) של David Merrill ו־Roger Reid, מתוך Personal Styles &amp; Effective Performance ‏(1981)<br><b style="color:var(--ink)">האפליקציה פותחה על ידי חגית ברגמן</b></footer>
+</div>
+
+<script>
+// ---------- Data (from the workshop questionnaire) ----------
+// Q1: right column = רשמי (formal), left column = בלתי רשמי (informal)
+const Q1 = [
+ ["שיטתי","אקראי"],["מחושב","ספונטני"],["שומר בבטן","מבטא"],["בוחן","אימפולסיבי"],["מרוחק","קרוב"],
+ ["מאופק","מלא חיים"],["בשליטה עצמית","נינוח, משוחרר"],["מאורגן","בלתי מאורגן"],["מובנה","בלתי מובנה"],
+ ["מקשה","גמיש"],["מעונב","לא רשמי"],["שכלתני","רגשני"],["בלתי זמין","זמין"],["ממוקד","בלתי ממוקד"],
+ ["שגרתי","לא שועה למוסכמות"],["מתוח","רפוי"],["מתמקד במשימה","מתמקד ביחסי אנוש"]
+];
+// Q2: right column = פסיבי (passive), left column = דומיננטי (dominant)
+const Q2 = [
+ ["מצטרף","לוקח פיקוד"],["מהסס","מוכן"],["מקבל בהבנה","מאתגר"],["מחריש","מכריע"],["מופנם","מוחצן"],
+ ["שקט","רועש"],["משלים","יזם"],["מקשיב","דברן"],["מאופק","דוחף"],["שאלות","הצהרות"],["סמוי","גלוי"],
+ ["מסכים","מתווכח"],["נשלט","שולט"],["כבד","מזרז"],["מבליע","מבטא"],["נמנע","ניגש"],["מצמצם","מגזים"]
+];
+
+const STYLES = {
+ expr:{name:"מקדם",cls:"expr",color:"--s-expr",soft:"--s-expr-soft",q:"מי?",
+  where:"בלתי רשמי + דומיננטי",
+  traits:["כריזמטי","מלהיב","יצירתי","חדשני","מזיז דברים","מוכן לעזור","ספונטניות","תחרותיות","התלהבות","נוכחות במרכז","גיוון ושינויים","הפתעות","רעיונות חדשים","כיף והנאות","פרצי אנרגיה","גמישות וזרימה"],
+  doo:["הוקרות ומחמאות","ליצור כיף ותחרותיות","לזרום עם הרעיונות שלו","לתת משימות קצרות טווח","לגוון ולחדש בכל הזדמנות"],
+  dont:["ביקורת","הפעלת סמכות עליו","לשעמם","לרדת לפרטי הפרטים"],
+  feel:"יחיד ומיוחד",
+  lab:"מורה מקדם יגיע עם רעיון לניסוי מגניב שראה ברשת. פרגנו לרעיון, וסגרו בקצרה מה צריך ומתי."},
+ driver:{name:"משימתי",cls:"driver",color:"--s-driver",soft:"--s-driver-soft",q:"למה?",
+  where:"רשמי + דומיננטי",
+  traits:["תכליתיות","שורה תחתונה","יעילות","קצר ולעניין","עלות מול תועלת","מיקוד בעובדות","תקתוק","פיקודיות","יעדים ומטרות","הובלה","ענייניות"],
+  doo:["שורה תחתונה","קצב מהיר","להדגיש מה יוצא לו מזה","להציב את המשימה ואת היעד הבאים"],
+  dont:["בזבוזים ואיחורים","חוסר דיוק","פירוט יתר","סטייה מהעניין"],
+  feel:"סמכותי ומוביל",
+  lab:"מורה משימתי ישלח הודעה של שורה אחת. ענו קצר: מה מוכן, מה חסר, ומה הפתרון."},
+ analyst:{name:"מנתח",cls:"analyst",color:"--s-analyst",soft:"--s-analyst-soft",q:"איך?",
+  where:"רשמי + פסיבי",
+  traits:["למדנות","חשיבה לוגית","ניתוח","דייקנות ויסודיות","איסוף נתונים","איפוק ומתינות","סדר וארגון","שיטתיות","בדיקה וחקירה","מיקוד בתהליכי עבודה"],
+  doo:["לפרט ולשלב נתונים בדוקים","לעדכן על כל שינוי מראש","להקשיב עד הסוף ובסבלנות","להזמין לשאול שאלות"],
+  dont:["מידע חלקי ו\"בערך\"","לקפוץ מנושא לנושא","להיכנס למרחב האישי בלי הזמנה","להפתיע"],
+  feel:"בעל הידע, רלוונטי ופותר הבעיות",
+  lab:"מורה מנתח ישאל על הריכוזים והכמויות. תנו רשימה מסודרת, ועדכנו מראש על כל שינוי."},
+ amiable:{name:"תומך",cls:"amiable",color:"--s-amiable",soft:"--s-amiable-soft",q:"עם מי?",
+  where:"בלתי רשמי + פסיבי",
+  traits:["כנות","סבלנות","סובלנות","נתינה","פרגון","רגשנות","הקשבה","מורל צוותי","מיקוד בקשר הבין־אישי","הרמוניה ועבודת צוות","הכלה","דאגה לאחר","חום ואהבה"],
+  doo:["לגלות אכפתיות ויחס חם","לעבוד יחד","לעודד","לפרט","להדגיש את התועלת הרגשית"],
+  dont:["חוסר כנות","להתעלם","לעמת ולהתעמת","סימני קריאה","להפתיע"],
+  feel:"מוערך כאדם וכאיש מקצוע, ומחובר אליך רגשית",
+  lab:"מורה תומך לא תמיד יגיד ישר מה הוא צריך. שאלו בחום, והציעו \"בואו נכין את זה יחד\"."}
+};
+// Reading order from the workshop slide: my style, the opposite, complement of the opposite, my complement
+const ORDER = {analyst:["analyst","amiable","expr","driver"],driver:["driver","expr","amiable","analyst"],
+               expr:["expr","driver","analyst","amiable"],amiable:["amiable","analyst","driver","expr"]};
+const ORDER_LABELS = ["הסגנון שלי","המתנגד","המשלים למתנגד","המשלים שלי"];
+
+// ---------- State ----------
+const S = {screen:"intro",name:"",a1:Array(17).fill(null),a2:Array(17).fill(null),qi:0,step:1,tries:0};
+let flips1=[], flips2=[];
+function shuffleFlips(){ flips1=Q1.map(()=>Math.random()<.5); flips2=Q2.map(()=>Math.random()<.5); }
+shuffleFlips();
+try{ const n=localStorage.getItem("cs-name"); if(n) S.name=n; }catch(e){}
+
+const $app=document.getElementById("app");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function scores(){
+  const formal=S.a1.filter(v=>v===0).length, informal=S.a1.filter(v=>v===1).length;
+  const passive=S.a2.filter(v=>v===0).length, dominant=S.a2.filter(v=>v===1).length;
+  const v=informal-formal;     // + = בלתי רשמי (up)
+  const h=dominant-passive;    // + = דומיננטי (left)
+  const style = v>0 ? (h>0?"expr":"amiable") : (h>0?"driver":"analyst");
+  return {formal,informal,passive,dominant,v,h,style};
+}
+
+// ---------- Screens ----------
+function render(){
+  ({intro,q1:()=>quiz(1),q2:()=>quiz(2),sums,grid,result,pintro:practiceIntro,pcase,pend})[S.screen]();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function intro(){
+  $app.innerHTML=`
+  <div class="hero">
+    <span class="eyebrow">סדנת סגנונות תקשורת ללבורנטים</span>
+    <h1>מה סגנון התקשורת שלי?</h1>
+    <p class="muted">שני שאלונים קצרים, ואז נעבור יחד את התהליך על הצירים, עד שהנקודה שלכם נוחתת באחד מארבעה ריבועים. מה מחכה בכל ריבוע? הפתעה 🎁</p>
+  </div>
+  <div class="quad-mini" aria-hidden="true">
+    <span style="background:var(--s-expr-soft)">?</span><span style="background:var(--s-amiable-soft)">?</span>
+    <span style="background:var(--s-driver-soft)">?</span><span style="background:var(--s-analyst-soft)">?</span>
+  </div>
+  <section class="card">
+    <h3>איך זה עובד</h3>
+    <ol class="steps">
+      <li>שאלון 1: 17 צמדי מילים. בכל צמד בוחרים את המילה שמאפיינת אתכם יותר.</li>
+      <li>שאלון 2: עוד 17 צמדים.</li>
+      <li>מסכמים כל טור.</li>
+      <li>מסמנים את הערכים על הצירים, מעבירים קווים ומוצאים את נקודת המפגש.</li>
+    </ol>
+    <div class="traps"><b>מלכודות במילוי:</b> ענו מה אתם <b>יותר</b>, השאלון הוא לא שחור לבן. ענו בכנות ובמהירות, ההרגשה הראשונה היא בדרך כלל הנכונה.</div>
+    <label for="nm" class="eyebrow">איך קוראים לך? (יופיע על כרטיס התוצאה)</label>
+    <input id="nm" type="text" value="${esc(S.name)}" placeholder="שם פרטי" autocomplete="given-name">
+    <div class="row"><button class="btn" id="go">מתחילים ←</button></div>
+  </section>`;
+  document.getElementById("go").onclick=()=>{
+    S.name=document.getElementById("nm").value.trim();
+    try{localStorage.setItem("cs-name",S.name)}catch(e){}
+    S.screen="q1";S.qi=0;render();
+  };
+}
+
+function quiz(n){
+  const Q=n===1?Q1:Q2, A=n===1?S.a1:S.a2, F=n===1?flips1:flips2, i=S.qi;
+  const pair=Q[i], flip=F[i];
+  // index 0 = right column word, 1 = left column word; display order randomised so position gives no hint
+  const opts=[0,1]; // fixed sides, exactly as in the Excel form: right = רשמי/פסיבי, left = בלתי רשמי/דומיננטי
+  const prog=Q.map((_,k)=>`<i class="${k<i||A[k]!==null&&k!==i?"done":k===i?"now":""}"></i>`).join("");
+  $app.innerHTML=`
+  <div class="row" style="justify-content:space-between">
+    <span class="eyebrow">שאלון ${n} מתוך 2</span><span class="qnum">${i+1} / 17</span>
+  </div>
+  <div class="progress" aria-hidden="true">${prog}</div>
+  <section class="card">
+    <h2>מה מאפיין אותך יותר?</h2>
+    <div class="pair">
+      <button class="choice ${A[i]===opts[0]?"picked":""}" data-v="${opts[0]}">${esc(pair[opts[0]])}</button>
+      <span class="or">או</span>
+      <button class="choice ${A[i]===opts[1]?"picked":""}" data-v="${opts[1]}">${esc(pair[opts[1]])}</button>
+    </div>
+    <div class="row" style="justify-content:space-between">
+      <button class="ghost" id="back">→ הקודם</button>
+      <span class="muted" style="font-size:.9rem">ענו מה אתם <b>יותר</b></span>
+    </div>
+  </section>`;
+  $app.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{
+    A[i]=+b.dataset.v; b.classList.add("picked");
+    setTimeout(()=>{
+      if(i<16){S.qi++;render();}
+      else if(n===1){S.screen="q2";S.qi=0;render();}
+      else{S.screen="sums";render();}
+    },220);
+  });
+  document.getElementById("back").onclick=()=>{
+    if(i>0){S.qi--;render();}
+    else if(n===2){S.screen="q1";S.qi=16;render();}
+    else{S.screen="intro";render();}
+  };
+}
+
+function sums(){
+  const s=scores();
+  $app.innerHTML=`
+  <span class="eyebrow">שלב 3 · סכמו כל טור</span>
+  <h2>הנה הטורים שלכם</h2>
+  <section class="card">
+    <h3>שאלון 1</h3>
+    <table class="sheet"><tr><th class="y">רשמי</th><th class="g">בלתי רשמי</th></tr>
+      <tr><td class="big">${s.formal}</td><td class="big">${s.informal}</td></tr></table>
+    <p class="result-line">ההפרש: <b>${Math.abs(s.v)}</b> לכיוון <b>${s.v>0?"בלתי רשמי":"רשמי"}</b></p>
+  </section>
+  <section class="card">
+    <h3>שאלון 2</h3>
+    <table class="sheet"><tr><th class="y">פסיבי</th><th class="g">דומיננטי</th></tr>
+      <tr><td class="big">${s.passive}</td><td class="big">${s.dominant}</td></tr></table>
+    <p class="result-line">ההפרש: <b>${Math.abs(s.h)}</b> לכיוון <b>${s.h>0?"דומיננטי":"פסיבי"}</b></p>
+  </section>
+  <p class="muted">את שני ההפרשים האלה תסמנו עכשיו על הצירים. זכרו אותם!</p>
+  <div class="row"><button class="btn" id="go">לצירים ←</button><button class="ghost" id="back">חזרה לשאלון</button></div>`;
+  document.getElementById("go").onclick=()=>{S.screen="grid";S.step=1;S.tries=0;render();};
+  document.getElementById("back").onclick=()=>{S.screen="q2";S.qi=16;render();};
+}
+
+// ---------- The grid journey ----------
+const C=210, K=10.5, MAXV=17; // centre and px per unit in a 420 viewBox
+const px=h=>C-h*K;  // dominant (+) to the left
+const py=v=>C-v*K;  // informal (+) up
+
+function planeSVG(s){
+  let ticks="";
+  for(let u=1;u<=MAXV;u+=2){
+    const d=u*K;
+    ticks+=`<line x1="${C+d}" y1="${C-4}" x2="${C+d}" y2="${C+4}" stroke="var(--muted)"/><line x1="${C-d}" y1="${C-4}" x2="${C-d}" y2="${C+4}" stroke="var(--muted)"/>`;
+    ticks+=`<line x1="${C-4}" y1="${C+d}" x2="${C+4}" y2="${C+d}" stroke="var(--muted)"/><line x1="${C-4}" y1="${C-d}" x2="${C+4}" y2="${C-d}" stroke="var(--muted)"/>`;
+    ticks+=`<text x="${C+d}" y="${C+17}" font-size="9.5" text-anchor="middle" fill="var(--muted)">${u}</text><text x="${C-d}" y="${C+17}" font-size="9.5" text-anchor="middle" fill="var(--muted)">${u}</text>`;
+    ticks+=`<text x="${C+8}" y="${C-d+3}" font-size="9" fill="var(--muted)">${u}</text><text x="${C+8}" y="${C+d+3}" font-size="9" fill="var(--muted)">${u}</text>`;
+  }
+  let gridl="";
+  for(let u=-MAXV;u<=MAXV;u+=2){ if(u===0)continue;
+    gridl+=`<line x1="${C+u*K}" y1="${C-MAXV*K}" x2="${C+u*K}" y2="${C+MAXV*K}" stroke="var(--grid)"/><line y1="${C+u*K}" x1="${C-MAXV*K}" y2="${C+u*K}" x2="${C+MAXV*K}" stroke="var(--grid)"/>`;}
+  const E=MAXV*K;
+  const q=(id,x,y,cls)=>`<rect id="${id}" class="quadfill" x="${x}" y="${y}" width="${E}" height="${E}" fill="var(--${cls}-soft)" opacity="0"/>`;
+  return `<svg class="plane" id="plane" viewBox="0 0 420 420" role="img" aria-label="מערכת צירים: רשמי מול בלתי רשמי, דומיננטי מול פסיבי">
+    ${q("q-expr",C-E,C-E,"s-expr")}${q("q-amiable",C,C-E,"s-amiable")}${q("q-driver",C-E,C,"s-driver")}${q("q-analyst",C,C,"s-analyst")}
+    ${gridl}
+    <line id="axV" x1="${C}" y1="${C-E-6}" x2="${C}" y2="${C+E+6}" stroke="var(--ink)" stroke-width="2"/>
+    <line id="axH" x1="${C-E-6}" y1="${C}" x2="${C+E+6}" y2="${C}" stroke="var(--ink)" stroke-width="2"/>
+    ${ticks}
+    <text x="${C}" y="16" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">בלתי רשמי</text>
+    <text x="${C}" y="414" text-anchor="middle" font-size="13" font-weight="700" fill="var(--ink)">רשמי</text>
+    <text x="${C-E}" y="${C-10}" text-anchor="start" direction="ltr" font-size="13" font-weight="700" fill="var(--ink)">דומיננטי</text>
+    <text x="${C+E}" y="${C-10}" text-anchor="end" direction="ltr" font-size="13" font-weight="700" fill="var(--ink)">פסיבי</text>
+    <g id="labels" opacity="0" style="transition:opacity .6s">
+      <text x="${C-E/2}" y="${C-E/2}" text-anchor="middle" font-size="20" fill="var(--ink)" font-family="Secular One, sans-serif">מקדם</text>
+      <text x="${C+E/2}" y="${C-E/2}" text-anchor="middle" font-size="20" fill="var(--ink)" font-family="Secular One, sans-serif">תומך</text>
+      <text x="${C-E/2}" y="${C+E/2}" text-anchor="middle" font-size="20" fill="var(--ink)" font-family="Secular One, sans-serif">משימתי</text>
+      <text x="${C+E/2}" y="${C+E/2}" text-anchor="middle" font-size="20" fill="var(--ink)" font-family="Secular One, sans-serif">מנתח</text>
+    </g>
+    <g id="lines"></g><g id="pins"></g>
+    <rect id="hitbox" x="0" y="0" width="420" height="420" fill="transparent" class="hit"/>
+  </svg>`;
+}
+
+const TASKS = s=>({
+  1:`סמנו את הערך שקיבלתם בשאלון 1 על הציר <b>רשמי / בלתי רשמי</b> (הציר העומד). הערך שלכם: <b>${Math.abs(s.v)}</b> לכיוון <b>${s.v>0?"בלתי רשמי":"רשמי"}</b>.`,
+  2:`עכשיו סמנו את הערך משאלון 2 על הציר <b>דומיננטי / פסיבי</b> (הציר השוכב). הערך שלכם: <b>${Math.abs(s.h)}</b> לכיוון <b>${s.h>0?"דומיננטי":"פסיבי"}</b>.`,
+  3:`העבירו דרך הנקודה הצהובה שעל הציר העומד <b>קו מקביל לציר דומיננטי / פסיבי</b>. לחצו על הנקודה.`,
+  4:`העבירו דרך הנקודה שעל הציר השוכב <b>קו מקביל לציר רשמי / בלתי רשמי</b>. לחצו על הנקודה.`,
+  5:`מצאו את <b>נקודת המפגש</b> של שני הקווים, ולחצו עליה.`,
+  6:`נחתתם! באיזה ריבוע נמצאת הנקודה שלכם?`
+});
+
+function grid(){
+  const s=scores();
+  $app.innerHTML=`
+  <span class="eyebrow">שלב 4 · התהליך על הצירים</span>
+  <div class="card" style="gap:10px">
+    <div class="task"><b class="n" id="stepn">${S.step}</b><p id="task">${TASKS(s)[S.step]}</p></div>
+    <p class="feedback" id="fb" role="status"></p>
+  </div>
+  <div class="gridbox" id="gb">${planeSVG(s)}</div>
+  <div class="row" id="ctrl"></div>`;
+  drawState(s); bindPlane(s);
+}
+
+function pin(x,y,color,id,extra="",r=7){return `<circle id="${id}" cx="${x}" cy="${y}" r="${r}" fill="${color}" stroke="var(--card)" stroke-width="2" ${extra}/>`;}
+
+function drawState(s){
+  const pins=document.getElementById("pins"), lines=document.getElementById("lines"), E=MAXV*K;
+  let p="",l="";
+  if(S.step>1) p+=pin(C,py(s.v),"var(--pin2)","pv");
+  if(S.step>2) p+=pin(px(s.h),C,"var(--pin2)","ph");
+  if(S.step>3) l+=`<line class="draw ${S.step===4?"grow":""}" x1="${C-E}" y1="${py(s.v)}" x2="${C+E}" y2="${py(s.v)}" stroke="var(--accent)" stroke-width="2.5"/>`;
+  if(S.step>4) l+=`<line class="draw ${S.step===5?"grow":""}" x1="${px(s.h)}" y1="${C-E}" x2="${px(s.h)}" y2="${C+E}" stroke="var(--accent)" stroke-width="2.5"/>`;
+  if(S.step>5) p+=pin(px(s.h),py(s.v),"var(--pin)","px",'class="pulse"',10);
+  // pulse the point to click in steps 3-4
+  lines.innerHTML=l; pins.innerHTML=p;
+  if(S.step===3) document.getElementById("pv").classList.add("pulse");
+  if(S.step===4) document.getElementById("ph").classList.add("pulse");
+  const t=document.getElementById("task"); if(t) t.innerHTML=TASKS(s)[S.step];
+  const n=document.getElementById("stepn"); if(n) n.textContent=S.step;
+  const ctrl=document.getElementById("ctrl");
+  ctrl.innerHTML = S.tries>=2 && S.step<6 ? `<button class="ghost" id="help">הראו לי איפה</button>` : "";
+  if(S.step===6){
+    document.getElementById("labels").setAttribute("opacity","1");
+    const q=document.getElementById("q-"+s.style); q.setAttribute("opacity","1");
+    ctrl.innerHTML=`<button class="btn" id="reveal">גלו את הסגנון שלי ←</button>`;
+    document.getElementById("reveal").onclick=()=>{S.screen="result";render();};
+    burst(s);
+  }
+  const h=document.getElementById("help"); if(h) h.onclick=()=>advance(s,true);
+}
+
+function toSvg(evt){
+  const svg=document.getElementById("plane"), pt=svg.createSVGPoint();
+  pt.x=evt.clientX; pt.y=evt.clientY; return pt.matrixTransform(svg.getScreenCTM().inverse());
+}
+
+function feedback(msg,ok){
+  const fb=document.getElementById("fb"); fb.textContent=msg; fb.className="feedback "+(ok?"good":"bad");
+  if(!ok){const g=document.getElementById("gb"); g.classList.remove("shake"); void g.offsetWidth; g.classList.add("shake");}
+}
+
+function advance(s,helped){
+  const praise=["מעולה!","בדיוק!","יפה מאוד!","בול!","נכון!"];
+  S.step++; S.tries=0; drawState(s);
+  if(S.step<6) feedback(helped?"הנה זה כאן. ממשיכים:":praise[S.step%praise.length],true);
+  else feedback("זו הנקודה שלכם!",true);
+}
+
+function bindPlane(s){
+  document.getElementById("hitbox").addEventListener("click",e=>{
+    if(S.step>=6) return;
+    const p=toSvg(e);
+    if(S.step===1){
+      if(Math.abs(p.x-C)>26){S.tries++;feedback("סמנו על הציר העומד, רשמי / בלתי רשמי",false);drawState(s);return;}
+      const val=(C-p.y)/K;
+      if(Math.abs(val-s.v)<=1.1) advance(s);
+      else{S.tries++;feedback(Math.sign(val)!==Math.sign(s.v)?`הכיוון הפוך. הערך שלכם לכיוון ${s.v>0?"בלתי רשמי (למעלה)":"רשמי (למטה)"}`:`כמעט. חפשו את המספר ${Math.abs(s.v)}`,false);drawState(s);}
+    } else if(S.step===2){
+      if(Math.abs(p.y-C)>26){S.tries++;feedback("סמנו על הציר השוכב, דומיננטי / פסיבי",false);drawState(s);return;}
+      const val=(C-p.x)/K;
+      if(Math.abs(val-s.h)<=1.1) advance(s);
+      else{S.tries++;feedback(Math.sign(val)!==Math.sign(s.h)?`הכיוון הפוך. הערך שלכם לכיוון ${s.h>0?"דומיננטי (שמאלה)":"פסיבי (ימינה)"}`:`כמעט. חפשו את המספר ${Math.abs(s.h)}`,false);drawState(s);}
+    } else if(S.step===3){
+      if(Math.hypot(p.x-C,p.y-py(s.v))<22) advance(s);
+      else{S.tries++;feedback("לחצו על הנקודה הצהובה שעל הציר העומד",false);drawState(s);}
+    } else if(S.step===4){
+      if(Math.hypot(p.x-px(s.h),p.y-C)<22) advance(s);
+      else{S.tries++;feedback("לחצו על הנקודה הצהובה שעל הציר השוכב",false);drawState(s);}
+    } else if(S.step===5){
+      if(Math.hypot(p.x-px(s.h),p.y-py(s.v))<20) advance(s);
+      else{S.tries++;feedback("חפשו איפה שני הקווים הכחולים נפגשים",false);drawState(s);}
+    }
+  });
+}
+
+function burst(s){
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const g=document.getElementById("pins"), cx=px(s.h), cy=py(s.v), col=`var(${STYLES[s.style].color})`;
+  let html="";
+  for(let i=0;i<18;i++){
+    const a=i/18*Math.PI*2, d=40+Math.random()*40;
+    html+=`<circle cx="${cx}" cy="${cy}" r="${3+Math.random()*3}" fill="${i%3?col:"var(--pin2)"}">
+      <animate attributeName="cx" from="${cx}" to="${cx+Math.cos(a)*d}" dur=".8s" fill="freeze"/>
+      <animate attributeName="cy" from="${cy}" to="${cy+Math.sin(a)*d}" dur=".8s" fill="freeze"/>
+      <animate attributeName="opacity" from="1" to="0" dur=".9s" fill="freeze"/></circle>`;
+  }
+  g.insertAdjacentHTML("beforeend",html);
+}
+
+// ---------- Result ----------
+function styleCard(k){
+  const st=STYLES[k];
+  return `
+   <div class="chips">${st.traits.map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div>
+   <div class="dodont">
+     <div class="do"><b>✔ עשה</b><ul>${st.doo.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+     <div class="dont"><b>✖ אל תעשה</b><ul>${st.dont.map(t=>`<li>${esc(t)}</li>`).join("")}</ul></div>
+   </div>
+   <p><b>לגרום לו להרגיש:</b> ${esc(st.feel)}</p>
+   <p><b>שאלה מובילה:</b> <span class="big" style="font-size:1.2rem">${st.q}</span></p>
+   <p style="background:var(${st.soft});border-radius:12px;padding:10px 12px"><b>במעבדה:</b> ${esc(st.lab)}</p>`;
+}
+
+function result(){
+  const s=scores(), st=STYLES[s.style];
+  const dist=Math.max(Math.abs(s.v),Math.abs(s.h));
+  const strength = dist<=3 ? "הנקודה שלכם קרובה למרכז: יש לכם נגיעות חזקות גם מהסגנונות השכנים." :
+                   dist>=11 ? "הנקודה שלכם רחוקה מהמרכז: זה סגנון מובהק אצלכם." :
+                   "יש לכם סגנון ברור, עם נגיעות גם מהסגנונות האחרים.";
+  const order=ORDER[s.style];
+  $app.innerHTML=`
+  <div class="badge ${st.cls}">
+    <span class="eyebrow" style="color:inherit;opacity:.85">${S.name?esc(S.name)+", ":""}סגנון התקשורת שלך</span>
+    <h1>${st.name}</h1>
+    <p>${st.where} · ${Math.abs(s.v)} ${s.v>0?"בלתי רשמי":"רשמי"}, ${Math.abs(s.h)} ${s.h>0?"דומיננטי":"פסיבי"}</p>
+  </div>
+  <p>${strength} אתם לא אמורים לצאת מאוזנים. בכולנו יש מאפיינים מכל ארבעת הסגנונות, והנטייה היא לרוב לסגנון אחד.</p>
+  <section class="card" style="text-align:center"><h3>🤫 מה זה אומר עליכם?</h3><p>את זה נגלה יחד, בכיתה.</p></section>
+  <p class="muted" style="text-align:center">📸 צלמו מסך של הכרטיס, ועברו לפינה של ה${st.name}.</p>
+
+  <div class="row" style="justify-content:center"><button class="ghost" id="replay">לעבור שוב על הצירים</button><button class="ghost" id="again">להתחיל מחדש</button></div>`;
+  document.getElementById("replay").onclick=()=>{S.screen="grid";S.step=1;S.tries=0;render();};
+  document.getElementById("again").onclick=()=>{S.a1.fill(null);S.a2.fill(null);S.qi=0;shuffleFlips();S.screen="intro";render();};
+}
+
+// ---------- Practice: identify the teacher's style ----------
+const PRACTICE = [
+ {style:"expr",title:"מנורת לבה",chat:[
+  ["t","הייייי מלכה 👑 ראיתי סרטון מטורף של מנורת לבה עם שמן וטבליות תוססות!!! עושים מחר עם יב׳? יהיה אפי 🔥🔥🔥"],
+  ["l","נשמע מגניב! כמה קבוצות? ובאיזו שעה?"],
+  ["t","נו את יודעת, מה שצריך 😂 תפתיעי אותי!! את הכי טובה"]],
+  clues:["רעיון חדש ומלהיב שראתה ברשת","\"עושים מחר\": מחליטה ומובילה לבד","מחמאות במקום פרטים (\"מלכה\", \"הכי טובה\")","מתחמקת מכל שאלה על פרטים"],
+  bad:"אני לא יכולה לעבוד ככה. בלי פרטים אין ניסוי.",
+  good:"רעיון מעולה 🤩 כדי שיהיה וואו מחר, רק תגידי לי כמה קבוצות. את השאר אני מארגנת."},
+ {style:"analyst",title:"בערך",chat:[
+  ["t","שלום. לגבי מעבדת האוסמוזה ביום שלישי: אבקש לוודא שהוכנו תמיסות סוכרוז בריכוזים 0.2M, 0.4M ו־0.6M, ממים מזוקקים. מצרפת שוב את הפרוטוקול (גרסה 3)."],
+  ["l","כן כן, בערך כמו בפעם שעברה 👍"],
+  ["t","מה זה בערך? באילו ריכוזים בדיוק? ומתי הוכנו?"]],
+  clues:["מספרים מדויקים, פרוטוקול, גרסה 3","ניסוח מסודר ומנומס (\"אבקש לוודא\")","שואלת \"איך\" ו\"מתי בדיוק\"","המילה \"בערך\" מלחיצה אותה"],
+  bad:"תסמכי עליי, זה בסדר.",
+  good:"כן: 0.2M, 0.4M ו־0.6M, ממים מזוקקים, הוכנו ביום ראשון. רשמתי על כל בקבוק. רוצה שאשלח תמונה?"},
+ {style:"driver",title:"ליד התלמידים",chat:[
+  ["n","08:03. המורה נכנס למעבדה, 28 תלמידים מאחוריו."],
+  ["t","למה המיקרוסקופים לא על השולחנות? אני מפסיד שיעור."],
+  ["l","אמרו לי שמתחילים ב־8:15..."],
+  ["t","לא משנה מה אמרו. מתי זה מוכן?"]],
+  clues:["קצר וחד, בלי \"בוקר טוב\"","לוקח פיקוד מול כולם","מדבר על זמן ועל תוצאה (\"אני מפסיד שיעור\")","\"לא משנה מה אמרו\": מעניין אותו הפתרון, לא ההסבר"],
+  bad:"אל תדבר אליי ככה מול התלמידים!",
+  good:"שתי דקות ומוכן. (ואחרי השיעור:) בוא נקבע שאתה שולח לי שעת התחלה יום לפני, וזה לא יקרה שוב."},
+ {style:"amiable",title:"רק אם מתאים",chat:[
+  ["t","היי, מקווה שאת בסדר 💛 לא רוצה להעמיס... אם במקרה יהיה לך רגע, אולי אפשר מחר משהו קטן עם מיקרוסקופים? רק אם זה לא מסובך כמובן 🙏"],
+  ["n","למחרת. המעבדה לא הוכנה, כי לא היה ברור שזו בקשה סגורה."],
+  ["t","זה בסדר... לא נורא. אני אסתדר 🙂"]],
+  clues:["חמה ואישית (\"מקווה שאת בסדר\")","מבקשת בעקיפין: \"אולי\", \"רק אם\"","לא אומרת מה היא באמת צריכה","\"לא נורא\" = נפגעה, אבל לא תגיד את זה"],
+  bad:"אז למה לא אמרת שזה סגור?!",
+  good:"בשמחה 😊 בואי נסגור יחד: כמה מיקרוסקופים ובאיזו שעה? ככה זה יחכה לך מוכן."},
+ {style:"analyst",title:"החלפה בלי עדכון",chat:[
+  ["n","לא היה כבד במקרר, אז הלבורנטית הכינה תפוחי אדמה במקום (גם בהם יש קטלאז)."],
+  ["t","בוקר טוב. הגעתי לכיתה וגיליתי שהכבד הוחלף בתפוח אדמה. לא עודכנתי. איך אני אמורה להסביר לתלמידים את ההבדל בתוצאות מהספר?"],
+  ["l","זה אותו דבר, יש שם קטלאז 🤷‍♀️"],
+  ["t","זה לא אותו דבר. קצב הפירוק שונה, ולא הכנתי את זה."]],
+  clues:["מנומסת ומאופקת, בלי צעקות ובלי אימוג׳ים","שואלת \"איך\"","מה שהפריע לה הוא ההפתעה, לא הרעיון","נאחזת בדיוק המדעי"],
+  bad:"זה אותו דבר, תזרמי.",
+  good:"צודקת, הייתי צריכה לעדכן מראש. בפעם הבאה אשלח הודעה לפני כל שינוי, עם הסבר. רוצה טבלה קצרה של ההבדלים בתוצאות בשביל התלמידים?"},
+ {style:"amiable",title:"שלושה סימני קריאה",chat:[
+  ["l","בפעם הבאה לפחות יום מראש!!!"],
+  ["t","בסדר... סליחה שהפרעתי. לא אבקש יותר."],
+  ["n","שבוע שלם המורה לא נכנס למעבדה."]],
+  clues:["לוקח את זה אישית (\"סליחה שהפרעתי\")","עונה ברכות ולא נלחם","נסוג במקום להתעמת","סימני קריאה = פגיעה, מבחינתו"],
+  bad:"נו באמת, אל תיקח ללב.",
+  good:"היי, לא התכוונתי שזה יישמע חד 💛 אני רוצה שהמעבדות שלך יצליחו. אם תשלח יום לפני, אכין לך הכל כמו שצריך."},
+ {style:"driver",title:"15:02",chat:[
+  ["n","יום חמישי, 15:02."],
+  ["t","מחר 8:00. תפוחי אדמה, יוד, 12 עמדות."],
+  ["l","היי 😊 קיבלתי עכשיו. לא בטוחה שיש מספיק יוד, אולי נדבר על זה?"],
+  ["t","מה הבעיה? תסדרי."]],
+  clues:["הודעה של שורה אחת, בלי שלום","הוראות, לא בקשות","\"מה הבעיה?\": רוצה פתרון, לא שיחה","השעה לא מעניינת אותו, רק התוצאה"],
+  bad:"שלחת את זה בשלוש אחר הצהריים! זה לא רציני.",
+  good:"מוכן מחר 8:00. יש יוד ל־8 עמדות, אז מציעה 8 עמדות של 3 תלמידים. מאשר?"},
+ {style:"expr",title:"שיעור מטורף",chat:[
+  ["n","בהפסקה, בחדר המורים."],
+  ["t","את חייבת לשמוע!!! השיעור היה מטורף, התלמידים צרחו מהתלהבות 🤩🤩 אה, ולא הספקתי להחזיר את הציוד, הוא בכיתה 12. את מלכה!"],
+  ["l","אני צריכה אותו לשיעור של 10:00..."],
+  ["t","יהיה בסדר! את תמיד מסתדרת 😘"]],
+  clues:["מספרת חוויה בהתלהבות","מחליטה בשבילך ש\"יהיה בסדר\"","מחמאה במקום פתרון","פרטים קטנים, כמו להחזיר ציוד, משעממים אותה"],
+  bad:"את תמיד שוכחת להחזיר! נמאס לי.",
+  good:"איזה כיף לשמוע! 🙌 תשלחי לי 2 תלמידים בהפסקה הבאה להחזיר את הציוד? ככה גם השיעור הבא יהיה מטורף."},
+ {style:"driver",boom:true,title:"💥 פיצוץ: \"שוב?!\"",chat:[
+  ["n","יום ראשון, 07:50."],
+  ["t","המעבדה לא מוכנה. שוב."],
+  ["l","שוב?! ביקשת אתמול ב־16:00!"],
+  ["t","ואת היית אמורה לבדוק את ההודעות."],
+  ["l","אני לא עובדת אצלך 24/7!!!"],
+  ["t","אני אדבר עם המנהלת."],
+  ["l","תדבר עם מי שאתה רוצה."],
+  ["n","💥 פיצוץ. שבועיים בלי מילה."]],
+  clues:["\"לא מוכנה. שוב.\": קצר, חד ומכוון לתוצאה","לוקח פיקוד ומאיים להסלים (\"אדבר עם המנהלת\")","לא מתעניין בסיבה, רק במה שלא נעשה"],
+  boomAt:"ברגע שהלבורנטית ענתה \"שוב?!\". היא הגיבה לטון ולא לצורך. מורה משימתי שומע ויכוח, מרגיש שמבזבזים לו זמן, ולוחץ חזק יותר. וגם הלבורנטית כבר הייתה \"מופעלת\", אז כל משפט רק הוסיף שמן למדורה.",
+  alt:[
+   ["t","המעבדה לא מוכנה. שוב."],
+   ["n","הלבורנטית עוצרת ✋, מזהה משימתי 🔍, ומתרגמת לשורה תחתונה 🔄"],
+   ["l","10 דקות ומוכן. מתחיל עם הדף, ואני מביאה את הציוד."],
+   ["t","אוקיי."],
+   ["n","בהפסקה, ברוגע:"],
+   ["l","כדי שהמעבדה שלך תהיה מוכנה בזמן, אני צריכה את הבקשה עד 12:00 יום לפני. מסתדר?"],
+   ["t","מסתדר. תודה."]]},
+ {style:"expr",boom:true,title:"💥 פיצוץ: \"שינוי קטן\"",chat:[
+  ["t","הייי 🤩 עשיתי שינוי קטן: במקום הניסוי עם העלים, היום עושים משהו עם שמרים וסוכר! יהיה מגניב!!"],
+  ["n","השיעור מתחיל בעוד 20 דקות. הכל מוכן לניסוי העלים."],
+  ["l","סליחה, אבל זה לא רציני. הכנתי שעתיים."],
+  ["t","וואו, למה את כזו שלילית? זה רק ניסוי 🙄"],
+  ["l","שלילית? אולי תתחילי להתכונן מראש כמו כולם."],
+  ["t","יש פה מישהי שלא אוהבת את העבודה שלה 🤷‍♀️"],
+  ["n","💥 פיצוץ. הלבורנטית במחסן, המורה מספרת את הסיפור לכל חדר המורים."]],
+  clues:["רעיון חדש ברגע האחרון, בהתלהבות","מחליטה לבד ומודיעה (\"היום עושים\")","פרטים והכנות לא מעניינים אותה","כשמבקרים אותה, היא נעלבת ותוקפת בחזרה"],
+  boomAt:"ברגע של \"זה לא רציני\". מקדם לא סובל ביקורת והפעלת סמכות, ושומע בזה \"את לא בסדר\". מהצד השני, \"למה את כזו שלילית\" פגע בלבורנטית. שני הצדדים הגיבו לפגיעה, ואף אחד לא דיבר על הצורך.",
+  alt:[
+   ["t","הייי 🤩 עשיתי שינוי קטן: במקום הניסוי עם העלים, היום עושים משהו עם שמרים וסוכר! יהיה מגניב!!"],
+   ["n","הלבורנטית עוצרת ✋, מזהה מקדמת 🔍, ומתחילה מהרעיון ולא מהבעיה 🔄"],
+   ["l","איזה רעיון כיפי 😄 היום הכל כבר מוכן לעלים ויהיה מעולה. בואי נשמור את השמרים לשיעור הבא, ואכין לך אותו מושלם."],
+   ["t","יאללה, סגרנו! את אלופה 🙌"],
+   ["l","רק תשלחי לי עד יום לפני כמה קבוצות, ואני דואגת לשאר 😉"]]}
+];
+const ALL = ["driver","analyst","expr","amiable"];
+const P = {i:0,ans:[],fresh:false};
+
+function practiceIntro(){
+  $app.innerHTML=`
+  <span class="eyebrow">תרגול · מה הסגנון של המורה?</span>
+  <h1>מי שולח לי הודעה?</h1>
+  <section class="card">
+    <p>${PRACTICE.length} שיחות בין מורים ללבורנטית. בכל שיחה:</p>
+    <ol class="steps">
+      <li>קוראים את השיחה.</li>
+      <li>מזהים: מה הסגנון של המורה? משימתי, מנתח, מקדם או תומך?</li>
+      <li>רואים את הרמזים, תגובה שמדליקה ותגובה שמחברת.</li>
+    </ol>
+    <p>💥 בשתי השיחות האחרונות הכל מתפוצץ. שם נעצור ונחשוב: מה אפשר לעשות אחרת?</p>
+    <p class="muted">אפשר לחזור אחורה בכל שלב. אין ציון לשבור, יש רק מורים לשרוד. 😅</p>
+    <div class="row"><button class="btn" id="go">לשיחה הראשונה ←</button><button class="ghost" id="exit">${S.a1.every(v=>v!==null)?"חזרה לתוצאה שלי":"חזרה למסך הפתיחה"}</button></div>
+  </section>`;
+  document.getElementById("go").onclick=()=>{P.i=0;P.ans=[];startCase();};
+  document.getElementById("exit").onclick=exitPractice;
+}
+function exitPractice(){ S.screen = S.a1.every(v=>v!==null) ? "result" : "intro"; render(); }
+function startCase(){P.fresh=!P.ans[P.i];S.screen="pcase";render();P.fresh=false;}
+
+function chatHTML(lines){
+  const who={t:"המורה",l:"הלבורנטית",n:""};
+  return `<div class="chat">${lines.map(([w,t],k)=>`<div class="msg ${w}" style="${P.fresh?`animation-delay:${k*.25}s`:"animation:none"}">${w!=="n"?`<small>${who[w]}</small>`:""}${esc(t)}</div>`).join("")}</div>`;
+}
+
+function pcase(){
+  const c=PRACTICE[P.i], a=P.ans[P.i]||{}, done=!!a.st;
+  const opt=k=>{
+    const cls=done?(k===c.style?" right":(a.st===k?" wrong":"")):"";
+    return `<button class="opt${cls}" data-k="${k}" aria-pressed="${a.st===k}" ${done?"disabled":""}><span class="dot" style="background:var(${STYLES[k].color})"></span>${STYLES[k].name}</button>`;
+  };
+  $app.innerHTML=`
+  <div class="row" style="justify-content:space-between"><span class="eyebrow">שיחה ${P.i+1} מתוך ${PRACTICE.length}</span><span class="qnum">${esc(c.title)}</span></div>
+  <div class="progress" aria-hidden="true">${PRACTICE.map((_,k)=>`<i class="${k<P.i?"done":k===P.i?"now":""}"></i>`).join("")}</div>
+  ${chatHTML(c.chat)}
+  <section class="card">
+    <b>${c.boom?"מה הסגנון של המורה שהתפוצץ פה?":"מה הסגנון של המורה?"}</b>
+    <div class="four">${ALL.map(opt).join("")}</div>
+  </section>
+  <div id="reveal"></div>
+  <div class="row" style="justify-content:space-between">
+    <button class="ghost" id="prev">→ ${P.i>0?"לשיחה הקודמת":"להסבר"}</button>
+    <button class="ghost" id="exit">יציאה מהתרגול</button>
+  </div>`;
+  $app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>{
+    P.ans[P.i]={st:b.dataset.k,alt:false}; pcase(); showReveal(true);
+  });
+  document.getElementById("prev").onclick=()=>{ if(P.i>0){P.i--;startCase();} else {S.screen="pintro";render();} };
+  document.getElementById("exit").onclick=exitPractice;
+  if(done) showReveal(false);
+}
+
+function showReveal(scroll){
+  const c=PRACTICE[P.i], st=STYLES[c.style], a=P.ans[P.i], hit=a.st===c.style;
+  const line = hit ? "בול! זיהיתם נכון 🎯" : `לא נורא, בגלל זה מתרגלים. זה ${st.name}, והנה הרמזים:`;
+  const nextLabel = P.i<PRACTICE.length-1 ? "לשיחה הבאה ←" : "לסיכום ←";
+  let body = `
+    <p class="feedback ${hit?"good":"bad"}" style="margin:0">${line}</p>
+    <div class="badge ${st.cls}" style="padding:16px"><span class="eyebrow" style="color:inherit;opacity:.85">התשובה</span><h2>${st.name}</h2><p>שאלה מובילה: ${st.q}</p></div>
+    <div><b>🔍 הרמזים בשיחה</b><ul class="clues">${c.clues.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  if(!c.boom){
+    body+=`
+    <div class="resp bad"><b>🔥 תגובה שמדליקה:</b><br>"${esc(c.bad)}"</div>
+    <div class="resp good"><b>🤝 תגובה שמחברת:</b><br>"${esc(c.good)}"</div>`;
+  } else {
+    body+=`
+    <div class="resp bad"><b>💣 איפה זה התפוצץ?</b><br>${esc(c.boomAt)}</div>
+    ${a.alt ? `<div><b>🔄 ככה זה יכול היה להיראות:</b></div>${chatHTML(c.alt)}` :
+      `<div class="resp good"><b>🤔 רגע לפני שממשיכים:</b><br>מה אתם הייתם עושים אחרת? חשבו או דברו על זה בקבוצה, ורק אז לחצו.</div>
+       <div class="row"><button class="btn" id="alt" style="background:var(--s-driver);color:#fff">מה אפשר לעשות אחרת? 🔄</button></div>`}`;
+  }
+  body+=`<div class="row"><button class="btn" id="next">${nextLabel}</button></div>`;
+  document.getElementById("reveal").innerHTML=`<section class="card">${body}</section>`;
+  const alt=document.getElementById("alt");
+  if(alt) alt.onclick=()=>{a.alt=true;P.fresh=true;showReveal(false);P.fresh=false;document.getElementById("next").scrollIntoView({behavior:"smooth",block:"end"});};
+  document.getElementById("next").onclick=()=>{ if(P.i<PRACTICE.length-1){P.i++;startCase();} else {S.screen="pend";render();} };
+  if(scroll) document.getElementById("reveal").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+function pend(){
+  const n=PRACTICE.length, ok=PRACTICE.filter((c,k)=>P.ans[k]&&P.ans[k].st===c.style).length, sp=Math.round(ok/n*100);
+  const msg = sp>=85?"אתם מזהים מורים ממרחק של מסדרון. 🏆": sp>=60?"יפה מאוד! עוד קצת תרגול ואתם מזהים מההודעה הראשונה.":"התחלה טובה. כדאי לעבור שוב, הפעם עם כרטיס הכיס ביד.";
+  $app.innerHTML=`
+  <span class="eyebrow">סיכום התרגול</span>
+  <section class="card" style="text-align:center;align-items:center">
+    <p class="score">${sp}%</p><p>זיהוי סגנון נכון</p>
+    <p><b>${msg}</b></p>
+  </section>
+  <section class="card"><b>מה למדנו מהפיצוצים?</b><p>✋ עצרו · 🔍 זהו · 🔄 תרגמו. מגיבים לצורך של המורה, לא לטון שלו.</p></section>
+  <div class="row" style="justify-content:center"><button class="ghost" id="prev">→ לשיחה האחרונה</button><button class="btn" id="again">לתרגל שוב</button><button class="ghost" id="exit">${S.a1.every(v=>v!==null)?"לתוצאה שלי":"למסך הפתיחה"}</button></div>`;
+  document.getElementById("again").onclick=()=>{S.screen="pintro";render();};
+  document.getElementById("prev").onclick=()=>{P.i=PRACTICE.length-1;startCase();};
+  document.getElementById("exit").onclick=exitPractice;
+}
+
+render();
+</script>
+
+</body></html>
